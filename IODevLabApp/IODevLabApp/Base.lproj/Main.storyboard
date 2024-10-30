@@ -31,6 +31,9 @@
                                         <state key="normal" title="  지출  ">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="spend:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PjH-1A-Svd"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
@@ -85,6 +88,7 @@
                         <outlet property="spendInputView" destination="6kz-HO-Xh4" id="1gd-m8-TdK"/>
                         <outlet property="spendLabel" destination="WVJ-Gk-QJF" id="c7t-Wo-f8z"/>
                         <outlet property="spendLabelView" destination="rzg-Fs-2kK" id="vY7-pU-W5o"/>
+                        <outlet property="spendTextField" destination="m9i-iL-N89" id="j0c-7E-PUu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
