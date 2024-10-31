@@ -27,15 +27,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u16-d1-U6v">
-                                <rect key="frame" x="25" y="169" width="343" height="50"/>
-                                <color key="backgroundColor" red="0.94509804249999996" green="0.94509804249999996" blue="0.94509804249999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Ez8-bj-Oan"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxV-8f-m7w">
                                 <rect key="frame" x="303.33333333333331" y="98" width="53.666666666666686" height="32"/>
                                 <constraints>
@@ -50,8 +41,16 @@
                                     <action selector="expenseTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uJ6-cM-mf8"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="원" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v57-Tz-Jvr">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="원" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v57-Tz-Jvr">
                                 <rect key="frame" x="333" y="184" width="15" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9aQ-p3-AZM">
+                                <rect key="frame" x="133" y="183" width="0.0" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -62,18 +61,15 @@
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2cX-Gg-bOm" secondAttribute="trailing" constant="25" id="5M2-t8-Fyw"/>
                             <constraint firstItem="2cX-Gg-bOm" firstAttribute="trailing" secondItem="gxV-8f-m7w" secondAttribute="trailing" constant="11" id="5zv-V5-NOW"/>
-                            <constraint firstItem="u16-d1-U6v" firstAttribute="leading" secondItem="2cX-Gg-bOm" secondAttribute="leading" id="BL1-ZH-5Q5"/>
-                            <constraint firstItem="u16-d1-U6v" firstAttribute="top" secondItem="2cX-Gg-bOm" secondAttribute="bottom" constant="30" id="Ebl-hA-BEq"/>
                             <constraint firstItem="gxV-8f-m7w" firstAttribute="top" secondItem="2cX-Gg-bOm" secondAttribute="top" constant="9" id="HGP-Z0-bp0"/>
-                            <constraint firstItem="v57-Tz-Jvr" firstAttribute="top" secondItem="u16-d1-U6v" secondAttribute="top" constant="15" id="Oe6-oL-oWU"/>
                             <constraint firstItem="2cX-Gg-bOm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="nuF-5B-qre"/>
-                            <constraint firstItem="u16-d1-U6v" firstAttribute="trailing" secondItem="2cX-Gg-bOm" secondAttribute="trailing" id="qmM-ku-oWx"/>
                             <constraint firstItem="2cX-Gg-bOm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="qsv-0Y-GqZ"/>
-                            <constraint firstItem="u16-d1-U6v" firstAttribute="trailing" secondItem="v57-Tz-Jvr" secondAttribute="trailing" constant="20" id="yg7-L9-4FN"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="expenseInput" destination="2cX-Gg-bOm" id="rs8-i6-BwG"/>
+                        <outlet property="labelExpenseOutput" destination="9aQ-p3-AZM" id="20k-lk-jIE"/>
+                        <outlet property="labelWon" destination="v57-Tz-Jvr" id="VuO-39-lSy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
