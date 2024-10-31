@@ -16,6 +16,7 @@
 		515A283A2CD24D59006717BD /* IODevLabAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515A28392CD24D59006717BD /* IODevLabAppTests.swift */; };
 		515A28442CD24D59006717BD /* IODevLabAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515A28432CD24D59006717BD /* IODevLabAppUITests.swift */; };
 		515A28462CD24D59006717BD /* IODevLabAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515A28452CD24D59006717BD /* IODevLabAppUITestsLaunchTests.swift */; };
+		515A28552CD3B94A006717BD /* SpendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515A28542CD3B94A006717BD /* SpendTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		515A283F2CD24D59006717BD /* IODevLabAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IODevLabAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		515A28432CD24D59006717BD /* IODevLabAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IODevLabAppUITests.swift; sourceTree = "<group>"; };
 		515A28452CD24D59006717BD /* IODevLabAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IODevLabAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		515A28542CD3B94A006717BD /* SpendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				515A28222CD24D57006717BD /* AppDelegate.swift */,
 				515A28242CD24D57006717BD /* SceneDelegate.swift */,
 				515A28262CD24D57006717BD /* ViewController.swift */,
+				515A28542CD3B94A006717BD /* SpendTableViewCell.swift */,
 				515A28282CD24D57006717BD /* Main.storyboard */,
 				515A282B2CD24D59006717BD /* Assets.xcassets */,
 				515A282D2CD24D59006717BD /* LaunchScreen.storyboard */,
@@ -258,6 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				515A28552CD3B94A006717BD /* SpendTableViewCell.swift in Sources */,
 				515A28272CD24D57006717BD /* ViewController.swift in Sources */,
 				515A28232CD24D57006717BD /* AppDelegate.swift in Sources */,
 				515A28252CD24D57006717BD /* SceneDelegate.swift in Sources */,

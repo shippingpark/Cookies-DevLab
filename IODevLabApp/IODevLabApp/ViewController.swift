@@ -18,9 +18,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var spendLabelView: UIView! // 지출한 값 + "원"
     @IBOutlet weak var spendLabel: UILabel! // 지출한 값
     
+    @IBOutlet weak var spendTableView: UITableView! // 지출 목록 TableView
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        spendTableView.dataSource = self
+        spendTableView.delegate = self
         
         // 지출 텍스트필드와 값 View radius 지정
         spendInputView.layer.cornerRadius = 20
@@ -72,5 +76,19 @@ class ViewController: UIViewController {
         } else {
             errorMessageLabel.text = ""
         }
+    }
+}
+
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SpendTableViewCell", for: indexPath) as? SpendTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        return cell
     }
 }
