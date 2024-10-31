@@ -35,6 +35,8 @@ class ViewController: UIViewController {
         // 3) 입력된 숫자가 라벨에 표시되기
         expenseOutput.text = expenseInput.text
         
+        
+        
 
        
     }
