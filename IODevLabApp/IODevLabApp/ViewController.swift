@@ -36,6 +36,9 @@ class ViewController: UIViewController {
         
         // 초기에는 셀이 아래부터 쌓이도록 테이블 뷰의 contentInset 설정
         setSpendBlockFromBottom()
+        
+        spendTextField.delegate = self
+        addDoneButtonOnKeyboard()
     }
     
     // 셀이 아래부터 쌓이도록 설정
@@ -64,6 +67,8 @@ class ViewController: UIViewController {
                 spendRecords.insert(numberFormatter.string(from: spendValue as NSNumber) ?? "", at: 0)
                 spendTableView.reloadData()
                 setSpendBlockFromBottom()
+                
+                // TODO: 음.. 지출버튼이 눌리고 나서 키보드가 내려가야할까..?
                 
             } else { // TextField의 값이 숫자가 아닌 경우
                 errorMessageLabel.text = "숫자만 입력하세유~~"
@@ -112,5 +117,24 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         return cell
+    }
+}
+
+extension ViewController: UITextFieldDelegate {
+    func addDoneButtonOnKeyboard() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        // "완료" 버튼을 Toolbar에 추가
+        let doneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(doneButtonAction))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        toolbar.items = [flexibleSpace, doneButton] // 버튼을 오른쪽 정렬
+        spendTextField.inputAccessoryView = toolbar // 텍스트 필드의 inputAccessoryView로 설정
+    }
+    
+    @objc func doneButtonAction() {
+        // "완료" 버튼을 눌렀을 때 키보드 내리기
+        spendTextField.resignFirstResponder()
     }
 }
