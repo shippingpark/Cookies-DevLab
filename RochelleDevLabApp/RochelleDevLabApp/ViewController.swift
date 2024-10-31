@@ -22,7 +22,6 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     
     afterButtonPressed.isHidden = true
-    
   }
   
   @IBAction func buttonPressed(_ sender: UIButton) {
