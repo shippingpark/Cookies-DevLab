@@ -15,6 +15,7 @@ class ViewController: UIViewController {
   
   @IBOutlet weak var resultLabel: UILabel!
   
+  @IBOutlet weak var resultLabelUnit: UILabel!
   
   
   override func viewDidLoad() {

@@ -62,6 +62,13 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="원" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SGJ-4x-jXB">
+                                        <rect key="frame" x="299" y="15" width="15" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -89,6 +96,7 @@
                     <connections>
                         <outlet property="afterButtonPressed" destination="Hg6-4Z-JvC" id="pGT-66-i0G"/>
                         <outlet property="resultLabel" destination="L1i-xi-E6g" id="xVK-SP-6CC"/>
+                        <outlet property="resultLabelUnit" destination="SGJ-4x-jXB" id="GNu-92-KEh"/>
                         <outlet property="textField" destination="icC-Oa-1yB" id="fbO-8m-cDt"/>
                     </connections>
                 </viewController>
