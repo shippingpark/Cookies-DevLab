@@ -14,7 +14,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var spendTappedButton: UIButton!
     
     @IBOutlet weak var table: UITableView!
-    
+    let cellName: String = "customeCell"
+    let cellTitle: Array<String> = ["10,000", "15,000", "37,000" ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,11 +42,16 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        return cellTitle.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        let customeCell = table.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as! CustomeCell
+        
+        customeCell.spendOutputLabel.text = spendTextField.text
+        
+        return customeCell
+        
     }
 }
 
