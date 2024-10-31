@@ -8,7 +8,11 @@
 import UIKit
 
 class CustomeCell: UITableViewCell {
-
+    
+    @IBOutlet weak var spendOutputView: UIView!
+    @IBOutlet weak var spendOutputLabel: UILabel!
+    @IBOutlet weak var spendUnitLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

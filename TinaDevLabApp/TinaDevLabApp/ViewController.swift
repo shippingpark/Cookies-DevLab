@@ -11,8 +11,6 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var spendTextField: UITextField!
     @IBOutlet weak var spendTextView: UIView!
-    @IBOutlet weak var spendOutputLabel: UILabel!
-    @IBOutlet weak var spendOutputView: UIView!
     @IBOutlet weak var spendTappedButton: UIButton!
     
     @IBOutlet weak var table: UITableView!
@@ -23,11 +21,10 @@ class ViewController: UIViewController {
         
         // 지출 텍스트필드와 값 view radius 지정
         spendTextView.layer.cornerRadius = 20
-        
         spendTappedButton.layer.cornerRadius = 15
         
-        spendOutputView.layer.cornerRadius = 20
-        
+
+                
     }
     
    
@@ -35,7 +32,6 @@ class ViewController: UIViewController {
     // 함수는 동사형 시작
     @IBAction func spendTapped(_ sender: UIButton) {
         // 3) 입력된 숫자가 라벨에 표시되기
-        spendOutputLabel.text = spendTextField.text
     }
 
     
