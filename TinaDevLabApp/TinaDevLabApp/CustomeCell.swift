@@ -1,5 +1,5 @@
 //
-//  UITableViewCell.swift
+//  CustomeCell.swift
 //  TinaDevLabApp
 //
 //  Created by KIM SEOWOO on 11/1/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UITableViewCell: UITableViewCell {
+class CustomeCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
