@@ -9,18 +9,14 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    // 1) 텍스트 필드에 숫자 입력하기
-// 2) 지출 버튼 누르기
-// 3) 입력된 숫자가 라벨에 표시되기
-// 4) 텍스트 필드 숫자 없어지기
-    // 변수는 컴포넌트명
-    
-    
     @IBOutlet weak var spendTextField: UITextField!
     @IBOutlet weak var spendTextView: UIView!
     @IBOutlet weak var spendOutputLabel: UILabel!
     @IBOutlet weak var spendOutputView: UIView!
     @IBOutlet weak var spendTappedButton: UIButton!
+    
+    @IBOutlet weak var table: UITableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,5 +39,15 @@ class ViewController: UIViewController {
     }
 
     
+}
+
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        <#code#>
+    }
 }
 
