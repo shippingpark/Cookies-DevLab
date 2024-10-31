@@ -33,8 +33,20 @@ class ViewController: UIViewController {
         
         // TableView 구분선 삭제
         spendTableView.separatorStyle = .none
+        
+        // 초기에는 셀이 아래부터 쌓이도록 테이블 뷰의 contentInset 설정
+        setSpendBlockFromBottom()
     }
     
+    // 셀이 아래부터 쌓이도록 설정
+    private func setSpendBlockFromBottom() {
+        let totalHeight = spendTableView.contentSize.height // TableView 내부 Cell들의 높이 합
+        let visibleHeight = spendTableView.bounds.size.height // TableView 자체 높이
+        
+        // Cell들의 합이 전체 높이보다 작은 경우,
+        // (전체 - Cell들의 합)을 상단의 여백으로 둔다!!
+        let inset = max(0, visibleHeight - totalHeight)
+        spendTableView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: 0, right: 0)
     }
     
     // 지출 버튼 action
@@ -49,11 +61,9 @@ class ViewController: UIViewController {
                 numberFormatter.numberStyle = .decimal
                 
                 // format된 지출 텍스트필드의 값을 지출 레이블로 가져온다
-                //                spendRecords.append(numberFormatter.string(from: spendValue as NSNumber) ?? "")
                 spendRecords.insert(numberFormatter.string(from: spendValue as NSNumber) ?? "", at: 0)
                 spendTableView.reloadData()
-                
-                // 새로운 셀이 추가될 때마다 테이블 뷰가 아래로 스크롤되도록 설정
+                setSpendBlockFromBottom()
                 
             } else { // TextField의 값이 숫자가 아닌 경우
                 errorMessageLabel.text = "숫자만 입력하세유~~"
