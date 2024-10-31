@@ -16,6 +16,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+    
+    func setup() {
+        expenseInput.keyboardType = UIKeyboardType.numberPad
+    }
 
     @IBAction func expenseTapped(_ sender: UIButton) {
     }
