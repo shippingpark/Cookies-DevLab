@@ -18,50 +18,63 @@
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2cX-Gg-bOm">
                                 <rect key="frame" x="25" y="89" width="343" height="50"/>
-                                <color key="backgroundColor" red="1" green="0.1857388616" blue="0.57339501380000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="YZm-gL-EEr"/>
                                 </constraints>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CY5-WJ-8XA">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u16-d1-U6v">
                                 <rect key="frame" x="25" y="169" width="343" height="50"/>
-                                <color key="backgroundColor" red="1" green="0.1857388616" blue="0.57339501380000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.94509804249999996" green="0.94509804249999996" blue="0.94509804249999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="COE-Gh-VI3"/>
+                                    <constraint firstAttribute="height" constant="50" id="Ez8-bj-Oan"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxV-8f-m7w">
-                                <rect key="frame" x="282" y="98" width="75" height="32"/>
+                                <rect key="frame" x="303.33333333333331" y="98" width="53.666666666666686" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="LGv-Lx-pK5"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="지출">
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="expenseTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uJ6-cM-mf8"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="원" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oS5-9i-UZa">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="원" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v57-Tz-Jvr">
                                 <rect key="frame" x="333" y="184" width="15" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="oS5-9i-UZa" firstAttribute="top" secondItem="CY5-WJ-8XA" secondAttribute="top" constant="15" id="0nx-aL-a8s"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2cX-Gg-bOm" secondAttribute="trailing" constant="25" id="5M2-t8-Fyw"/>
                             <constraint firstItem="2cX-Gg-bOm" firstAttribute="trailing" secondItem="gxV-8f-m7w" secondAttribute="trailing" constant="11" id="5zv-V5-NOW"/>
+                            <constraint firstItem="u16-d1-U6v" firstAttribute="leading" secondItem="2cX-Gg-bOm" secondAttribute="leading" id="BL1-ZH-5Q5"/>
+                            <constraint firstItem="u16-d1-U6v" firstAttribute="top" secondItem="2cX-Gg-bOm" secondAttribute="bottom" constant="30" id="Ebl-hA-BEq"/>
                             <constraint firstItem="gxV-8f-m7w" firstAttribute="top" secondItem="2cX-Gg-bOm" secondAttribute="top" constant="9" id="HGP-Z0-bp0"/>
-                            <constraint firstItem="2cX-Gg-bOm" firstAttribute="trailing" secondItem="oS5-9i-UZa" secondAttribute="trailing" constant="20" id="KBJ-xv-hqw"/>
-                            <constraint firstItem="CY5-WJ-8XA" firstAttribute="top" secondItem="2cX-Gg-bOm" secondAttribute="bottom" constant="30" id="nco-B4-h9X"/>
+                            <constraint firstItem="v57-Tz-Jvr" firstAttribute="top" secondItem="u16-d1-U6v" secondAttribute="top" constant="15" id="Oe6-oL-oWU"/>
                             <constraint firstItem="2cX-Gg-bOm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="nuF-5B-qre"/>
+                            <constraint firstItem="u16-d1-U6v" firstAttribute="trailing" secondItem="2cX-Gg-bOm" secondAttribute="trailing" id="qmM-ku-oWx"/>
                             <constraint firstItem="2cX-Gg-bOm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="qsv-0Y-GqZ"/>
+                            <constraint firstItem="u16-d1-U6v" firstAttribute="trailing" secondItem="v57-Tz-Jvr" secondAttribute="trailing" constant="20" id="yg7-L9-4FN"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="expenseInput" destination="2cX-Gg-bOm" id="rs8-i6-BwG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
