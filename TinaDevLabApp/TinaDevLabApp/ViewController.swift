@@ -23,6 +23,8 @@ class ViewController: UIViewController {
         spendTextView.layer.cornerRadius = 20
         spendTappedButton.layer.cornerRadius = 15
         
+        table.delegate = self
+        table.dataSource = self
 
                 
     }
