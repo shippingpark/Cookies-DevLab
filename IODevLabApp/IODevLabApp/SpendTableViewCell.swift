@@ -9,8 +9,8 @@ import UIKit
 
 class SpendTableViewCell: UITableViewCell {
     @IBOutlet weak var cellView: UIView!
-    @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var spendValueLabel: UILabel!
+    var deleteAction: () -> Void = {} // action을 전달하는 아주 좋은 방법인지 모르게써요,,
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,4 +24,7 @@ class SpendTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func deleteButtonTapped(_ sender: UIButton) {
+        deleteAction()
+    }
 }

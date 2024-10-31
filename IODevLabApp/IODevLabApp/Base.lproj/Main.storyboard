@@ -59,7 +59,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="0F1-cp-MZ7">
-                                <rect key="frame" x="25" y="248" width="343" height="530"/>
+                                <rect key="frame" x="25" y="175" width="343" height="603"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SpendTableViewCell" id="ddv-47-NAR" customClass="SpendTableViewCell" customModule="IODevLabApp" customModuleProvider="target">
@@ -76,6 +76,9 @@
                                                             <rect key="frame" x="8" y="5" width="36" height="35"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" title="X"/>
+                                                            <connections>
+                                                                <action selector="deleteButtonTapped:" destination="ddv-47-NAR" eventType="touchUpInside" id="uKU-yW-i7u"/>
+                                                            </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="원" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vM0-qI-Wk4">
                                                             <rect key="frame" x="320" y="12" width="15" height="21"/>
@@ -84,8 +87,8 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9TZ-ML-hsz">
-                                                            <rect key="frame" x="297" y="12" width="11" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <rect key="frame" x="299" y="14" width="9" height="17"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -110,8 +113,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="cellView" destination="XCx-oR-QUl" id="8ag-st-agp"/>
-                                            <outlet property="deleteButton" destination="BJ6-4F-K7z" id="TNP-K6-zyu"/>
-                                            <outlet property="spendValueLabel" destination="9TZ-ML-hsz" id="FjR-qs-lI4"/>
+                                            <outlet property="spendValueLabel" destination="9TZ-ML-hsz" id="guA-HW-4GS"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -120,50 +122,17 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="mGm-n5-jxF"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rzg-Fs-2kK">
-                                <rect key="frame" x="25" y="179" width="343" height="49"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVJ-Gk-QJF">
-                                        <rect key="frame" x="166.33333333333334" y="14" width="10.333333333333343" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
-                                                <integer key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="원" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sTA-uv-rbK">
-                                        <rect key="frame" x="312" y="14" width="15" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemGray6Color"/>
-                                <constraints>
-                                    <constraint firstItem="WVJ-Gk-QJF" firstAttribute="centerX" secondItem="rzg-Fs-2kK" secondAttribute="centerX" id="0YG-P0-M0G"/>
-                                    <constraint firstAttribute="trailing" secondItem="sTA-uv-rbK" secondAttribute="trailing" constant="16" id="F1d-zd-02a"/>
-                                    <constraint firstItem="sTA-uv-rbK" firstAttribute="centerY" secondItem="rzg-Fs-2kK" secondAttribute="centerY" id="IOz-3v-GZ1"/>
-                                    <constraint firstItem="WVJ-Gk-QJF" firstAttribute="centerY" secondItem="rzg-Fs-2kK" secondAttribute="centerY" id="auj-VF-Jb2"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6kz-HO-Xh4" secondAttribute="trailing" constant="25" id="ECy-hf-slK"/>
-                            <constraint firstItem="rzg-Fs-2kK" firstAttribute="height" secondItem="6kz-HO-Xh4" secondAttribute="height" multiplier="0.804348" constant="12" id="G0A-ot-G0k"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0F1-cp-MZ7" secondAttribute="bottom" constant="40" id="L9r-Rn-OC8"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0F1-cp-MZ7" secondAttribute="trailing" constant="25" id="P7e-Db-B89"/>
-                            <constraint firstItem="rzg-Fs-2kK" firstAttribute="top" secondItem="f5C-Hr-dfY" secondAttribute="bottom" constant="20" id="Sa9-jf-8xq"/>
-                            <constraint firstItem="0F1-cp-MZ7" firstAttribute="top" secondItem="rzg-Fs-2kK" secondAttribute="bottom" constant="20" id="WGi-Ug-gjD"/>
                             <constraint firstItem="6kz-HO-Xh4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="WLf-5M-8Q4"/>
-                            <constraint firstItem="rzg-Fs-2kK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="Z8a-J7-MSy"/>
+                            <constraint firstItem="0F1-cp-MZ7" firstAttribute="top" secondItem="f5C-Hr-dfY" secondAttribute="bottom" constant="16" id="chr-fg-gJM"/>
                             <constraint firstItem="6kz-HO-Xh4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="eJi-8Q-If1"/>
                             <constraint firstItem="f5C-Hr-dfY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="hcA-fN-7n0"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rzg-Fs-2kK" secondAttribute="trailing" constant="25" id="qQU-8Z-ZoN"/>
                             <constraint firstItem="f5C-Hr-dfY" firstAttribute="top" secondItem="6kz-HO-Xh4" secondAttribute="bottom" constant="8" id="qc8-IK-L77"/>
                             <constraint firstItem="0F1-cp-MZ7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="v8y-zt-6BO"/>
                         </constraints>
@@ -172,8 +141,6 @@
                         <outlet property="errorMessageLabel" destination="f5C-Hr-dfY" id="0HA-Te-pHQ"/>
                         <outlet property="spendButton" destination="iX4-QZ-xFj" id="f5z-3Y-gSg"/>
                         <outlet property="spendInputView" destination="6kz-HO-Xh4" id="1gd-m8-TdK"/>
-                        <outlet property="spendLabel" destination="WVJ-Gk-QJF" id="c7t-Wo-f8z"/>
-                        <outlet property="spendLabelView" destination="rzg-Fs-2kK" id="vY7-pU-W5o"/>
                         <outlet property="spendTableView" destination="0F1-cp-MZ7" id="gRH-on-CH7"/>
                         <outlet property="spendTextField" destination="m9i-iL-N89" id="j0c-7E-PUu"/>
                     </connections>

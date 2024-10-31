@@ -15,10 +15,9 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var errorMessageLabel: UILabel! // 에러 메시지 레이블
     
-    @IBOutlet weak var spendLabelView: UIView! // 지출한 값 + "원"
-    @IBOutlet weak var spendLabel: UILabel! // 지출한 값
-    
     @IBOutlet weak var spendTableView: UITableView! // 지출 목록 TableView
+    
+    private var spendRecords: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,10 +27,14 @@ class ViewController: UIViewController {
         
         // 지출 텍스트필드와 값 View radius 지정
         spendInputView.layer.cornerRadius = 20
-        spendLabelView.layer.cornerRadius = 20
         
         // 지출 버튼 radius 지정
         spendButton.layer.cornerRadius = 16
+        
+        // TableView 구분선 삭제
+        spendTableView.separatorStyle = .none
+    }
+    
     }
     
     // 지출 버튼 action
@@ -46,11 +49,14 @@ class ViewController: UIViewController {
                 numberFormatter.numberStyle = .decimal
                 
                 // format된 지출 텍스트필드의 값을 지출 레이블로 가져온다
-                spendLabel.text = numberFormatter.string(from: spendValue as NSNumber)
+                //                spendRecords.append(numberFormatter.string(from: spendValue as NSNumber) ?? "")
+                spendRecords.insert(numberFormatter.string(from: spendValue as NSNumber) ?? "", at: 0)
+                spendTableView.reloadData()
+                
+                // 새로운 셀이 추가될 때마다 테이블 뷰가 아래로 스크롤되도록 설정
                 
             } else { // TextField의 값이 숫자가 아닌 경우
                 errorMessageLabel.text = "숫자만 입력하세유~~"
-                spendLabel.text = "0"
             }
             
             // 지출 텍스트필드의 값을 지워준다
@@ -60,7 +66,6 @@ class ViewController: UIViewController {
             
             // 레이블에 숫자를 입력 후에 누르라는 메시지 전달
             errorMessageLabel.text = "숫자를 입력해주세유~~"
-            spendLabel.text = "0"
             
         }
     }
@@ -79,14 +84,21 @@ class ViewController: UIViewController {
     }
 }
 
+// TableView 설정
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return spendRecords.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SpendTableViewCell", for: indexPath) as? SpendTableViewCell else {
             return UITableViewCell()
+        }
+        
+        cell.spendValueLabel.text = spendRecords[indexPath.row]
+        cell.deleteAction = {
+            self.spendRecords.remove(at: indexPath.row)
+            tableView.reloadData()
         }
         
         return cell
