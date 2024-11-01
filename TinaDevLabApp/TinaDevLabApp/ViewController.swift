@@ -52,19 +52,12 @@ class ViewController: UIViewController {
     // 지출 입력 버튼
     @IBAction func spendTapped(_ sender: UIButton) {
         
-        // GPT 코드
-        // 1. spendTextField에 입력된 텍스트 가져오기
         guard let text = spendTextField.text, !text.isEmpty else {
-            return  // 텍스트가 없으면 아무 작업도 하지 않음
+            return
         }
-        
-        // 2. 입력된 숫자를 배열에 추가
-        cellTitle.insert(text, at: 0)  // 위쪽에서부터 숫자가 입력되도록 배열 앞에 추가
-        
-        // 3. 테이블 뷰를 리로드하여 업데이트
+    
+        cellTitle.insert(text, at: 0)
         table.reloadData()
-        
-        // 4. 텍스트 필드 초기화
         spendTextField.text = ""
         
     }
