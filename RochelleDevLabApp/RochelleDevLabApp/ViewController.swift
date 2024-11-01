@@ -27,7 +27,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     resultLabelUnit.isHidden = true
     
     tableView.delegate = self
-      tableView.dataSource = self
+    tableView.dataSource = self
     
     tableView.register(UINib(nibName: "ResultTableViewCell", bundle: nil), forCellReuseIdentifier: "ResultCell")
   }
