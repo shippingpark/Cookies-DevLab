@@ -79,14 +79,20 @@ class ViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             
-            spendTextFieldView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-            spendTextFieldView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
-            spendTextFieldView.topAnchor.constraint(equalTo: view.topAnchor, constant: 128),
+//            spendTextFieldView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+//            spendTextFieldView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+//            spendTextFieldView.topAnchor.constraint(equalTo: view.topAnchor, constant: 128),
+//            
+            spendTextFieldView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            spendTextFieldView.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 150),
+            spendTextFieldView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9), // 비율
+            spendTextFieldView.heightAnchor.constraint(equalToConstant: 50),
             
+      
+            spendButton.widthAnchor.constraint(equalTo: spendTextFieldView.widthAnchor, multiplier: 0.15),
             spendButton.trailingAnchor.constraint(equalTo: spendTextFieldView.trailingAnchor, constant: -11),
             spendButton.topAnchor.constraint(equalTo: spendTextFieldView.topAnchor, constant: 9),
             spendButton.bottomAnchor.constraint(equalTo: spendTextFieldView.bottomAnchor, constant: -9),
-            spendButton.widthAnchor.constraint(equalToConstant: 52),
             
             spendTextField.topAnchor.constraint(equalTo: spendTextFieldView.topAnchor, constant: 17),
             spendTextField.bottomAnchor.constraint(equalTo: spendTextFieldView.bottomAnchor, constant: -17),
