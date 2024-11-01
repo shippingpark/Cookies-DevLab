@@ -10,23 +10,46 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var spendInputView: UIView! // 지출 TextField + 지출 버튼
-    // TODO: 텍스트필드에서 입력할 때도 숫자 형식 변환
     @IBOutlet weak var spendTextField: UITextField! // 텍스트필드
     @IBOutlet weak var spendButton: UIButton! // 지출 버튼
     
-    @IBOutlet weak var spendLabelView: UIView! // 지출한 값 + "원"
-    @IBOutlet weak var spendLabel: UILabel! // 지출한 값
+    @IBOutlet weak var errorMessageLabel: UILabel! // 에러 메시지 레이블
+    
+    @IBOutlet weak var spendTableView: UITableView! // 지출 목록 TableView
+    
+    private var spendRecords: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        spendTableView.dataSource = self
+        spendTableView.delegate = self
         
         // 지출 텍스트필드와 값 View radius 지정
         spendInputView.layer.cornerRadius = 20
-        spendLabelView.layer.cornerRadius = 20
         
         // 지출 버튼 radius 지정
         spendButton.layer.cornerRadius = 16
+        
+        // TableView 구분선 삭제
+        spendTableView.separatorStyle = .none
+        
+        // 초기에는 셀이 아래부터 쌓이도록 테이블 뷰의 contentInset 설정
+        setSpendBlockFromBottom()
+        
+        spendTextField.delegate = self
+        addDoneButtonOnKeyboard()
+    }
+    
+    // 셀이 아래부터 쌓이도록 설정
+    private func setSpendBlockFromBottom() {
+        let totalHeight = spendTableView.contentSize.height // TableView 내부 Cell들의 높이 합
+        let visibleHeight = spendTableView.bounds.size.height // TableView 자체 높이
+        
+        // Cell들의 합이 전체 높이보다 작은 경우,
+        // (전체 - Cell들의 합)을 상단의 여백으로 둔다!!
+        let inset = max(0, visibleHeight - totalHeight)
+        spendTableView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: 0, right: 0)
     }
     
     // 지출 버튼 action
@@ -41,11 +64,14 @@ class ViewController: UIViewController {
                 numberFormatter.numberStyle = .decimal
                 
                 // format된 지출 텍스트필드의 값을 지출 레이블로 가져온다
-                spendLabel.text = numberFormatter.string(from: spendValue as NSNumber)
+                spendRecords.insert(numberFormatter.string(from: spendValue as NSNumber) ?? "", at: 0)
+                spendTableView.reloadData()
+                setSpendBlockFromBottom()
+                
+                // TODO: 음.. 지출버튼이 눌리고 나서 키보드가 내려가야할까..?
                 
             } else { // TextField의 값이 숫자가 아닌 경우
-                // TODO: 숫자가 아님을 경고할 때 텍스트 색상도 변경해보자
-                spendLabel.text = "숫자만 입력하세유~~"
+                errorMessageLabel.text = "숫자만 입력하세유~~"
             }
             
             // 지출 텍스트필드의 값을 지워준다
@@ -54,8 +80,61 @@ class ViewController: UIViewController {
         } else { // 텍스트필드가 비어있을 때 동작
             
             // 레이블에 숫자를 입력 후에 누르라는 메시지 전달
-            spendLabel.text = "금액을 입력하고 지출해~~"
+            errorMessageLabel.text = "숫자를 입력해주세유~~"
             
         }
+    }
+    
+    // TextField 입력 길이 제한
+    @IBAction func editingChangedSpendTextField(_ sender: UITextField) {
+        guard let spendTextFieldText = sender.text else { return }
+        
+        if spendTextFieldText.count > 15 {
+            sender.deleteBackward()
+            
+            errorMessageLabel.text = "15자리까지 입력할 수 있어유~~"
+        } else {
+            errorMessageLabel.text = ""
+        }
+    }
+}
+
+// TableView 설정
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return spendRecords.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SpendTableViewCell", for: indexPath) as? SpendTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        cell.spendValueLabel.text = spendRecords[indexPath.row]
+        cell.deleteAction = {
+            self.spendRecords.remove(at: indexPath.row)
+            tableView.reloadData()
+        }
+        
+        return cell
+    }
+}
+
+extension ViewController: UITextFieldDelegate {
+    func addDoneButtonOnKeyboard() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        // "완료" 버튼을 Toolbar에 추가
+        let doneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(doneButtonAction))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        toolbar.items = [flexibleSpace, doneButton] // 버튼을 오른쪽 정렬
+        spendTextField.inputAccessoryView = toolbar // 텍스트 필드의 inputAccessoryView로 설정
+    }
+    
+    @objc func doneButtonAction() {
+        // "완료" 버튼을 눌렀을 때 키보드 내리기
+        spendTextField.resignFirstResponder()
     }
 }
