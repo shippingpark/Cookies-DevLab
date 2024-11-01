@@ -60,6 +60,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         
     }
+    
+    func makeUI () {
+        
+        //spendTextFieldView를 view에 올리기
+        view.addSubview(spendTextFieldView)
+        
+    }
         
     }
     
