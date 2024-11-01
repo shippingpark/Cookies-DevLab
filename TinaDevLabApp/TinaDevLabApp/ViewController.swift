@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         let view = UIView()
         
         view.backgroundColor = UIColor.lightGray
-        view.layer.cornerRadius = 5
+        view.layer.cornerRadius = 28
         view.layer.masksToBounds = true
         
         // spendTextFieldView에 텍스트필드, 버튼 올리기
@@ -50,21 +50,52 @@ class ViewController: UIViewController {
     // 지출 금액을 입력하는 버튼
     private let spendButton: UIButton = {
         let button = UIButton(type: .custom)
+        button.backgroundColor = .white
         button.setTitle("지출", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        button.layer.cornerRadius = 16
+        button.layer.masksToBounds = true
         
         return button
     }()
+
     
     override func viewDidLoad() {
-        
+        super.viewDidLoad()
+        makeUI()
     }
     
     func makeUI () {
         
         //spendTextFieldView를 view에 올리기
         view.addSubview(spendTextFieldView)
+        
+        //오토레이아웃 설정
+        spendTextFieldView.translatesAutoresizingMaskIntoConstraints = false
+        
+        spendTextField.translatesAutoresizingMaskIntoConstraints = false
+        spendButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            
+            spendTextFieldView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            spendTextFieldView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            spendTextFieldView.topAnchor.constraint(equalTo: view.topAnchor, constant: 128),
+            
+            spendButton.trailingAnchor.constraint(equalTo: spendTextFieldView.trailingAnchor, constant: -11),
+            spendButton.topAnchor.constraint(equalTo: spendTextFieldView.topAnchor, constant: 9),
+            spendButton.bottomAnchor.constraint(equalTo: spendTextFieldView.bottomAnchor, constant: -9),
+            spendButton.widthAnchor.constraint(equalToConstant: 52),
+            
+            spendTextField.topAnchor.constraint(equalTo: spendTextFieldView.topAnchor, constant: 17),
+            spendTextField.bottomAnchor.constraint(equalTo: spendTextFieldView.bottomAnchor, constant: -17),
+            spendTextField.leadingAnchor.constraint(equalTo: spendTextFieldView.leadingAnchor, constant: 22),
+            spendTextField.trailingAnchor.constraint(equalTo: spendButton.trailingAnchor, constant: -15)
+            
+        ])
+    
+        
         
     }
         
