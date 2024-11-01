@@ -91,7 +91,6 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="spendOutputLabel" destination="q39-cx-UlH" id="heH-Km-W6Q"/>
-                                            <outlet property="spendOutputView" destination="vNv-ZP-RD5" id="ycG-h0-vag"/>
                                             <outlet property="spendUnitLabel" destination="cxg-Ad-smB" id="KTi-IS-Qvj"/>
                                         </connections>
                                     </tableViewCell>
@@ -111,9 +110,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="spendTappedButton" destination="a7u-B7-2VY" id="z1z-nc-Y6s"/>
-                        <outlet property="spendTextField" destination="UXi-FT-1ch" id="Zl8-Bt-7Qy"/>
                         <outlet property="spendTextView" destination="zyU-qF-qSe" id="C5P-Ii-rWq"/>
-                        <outlet property="table" destination="8qk-is-qcW" id="DOV-IW-0tU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
