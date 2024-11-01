@@ -81,7 +81,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         let customeCell = table.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as! CustomeCell
         
         customeCell.spendOutputLabel.text = cellTitle[indexPath.row]
-        
+//        customeCell.spendOutputLabel.text = spendTextField.text
         return customeCell
         
     }
