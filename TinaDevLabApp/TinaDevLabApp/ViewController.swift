@@ -80,7 +80,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let customeCell = table.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as! CustomeCell
         
-        customeCell.spendOutputLabel.text = spendTextField.text
+        customeCell.spendOutputLabel.text = cellTitle[indexPath.row]
         
         return customeCell
         
