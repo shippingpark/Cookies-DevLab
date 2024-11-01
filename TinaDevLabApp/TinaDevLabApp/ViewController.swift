@@ -43,6 +43,16 @@ class ViewController: UIViewController {
         return tf
     }()
     
+    // 지출 금액을 입력하는 버튼
+    private let spendButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setTitle("지출", for: .normal)
+        button.setTitleColor(UIColor.lightGray, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        
+        return button
+    }()
+    
     override func viewDidLoad() {
         
     }
