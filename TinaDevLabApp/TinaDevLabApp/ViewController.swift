@@ -18,6 +18,10 @@ import UIKit
 class ViewController: UIViewController {
     
     private let tableView = UITableView()
+    
+    // 테이블뷰의 데이터를 표시하기 위한 배열
+    var spendArray: [MTLFunctionStitchingNode] = []
+    
 
     
     // 지출 금액을 입력하는 텍스트뷰
