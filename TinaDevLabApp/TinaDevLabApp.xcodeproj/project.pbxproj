@@ -10,12 +10,12 @@
 		95CC0CC82CD24D30003F662B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CC0CC72CD24D30003F662B /* AppDelegate.swift */; };
 		95CC0CCA2CD24D30003F662B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CC0CC92CD24D30003F662B /* SceneDelegate.swift */; };
 		95CC0CCC2CD24D30003F662B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CC0CCB2CD24D30003F662B /* ViewController.swift */; };
-		95CC0CCF2CD24D30003F662B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 95CC0CCE2CD24D30003F662B /* Base */; };
 		95CC0CD12CD24D31003F662B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95CC0CD02CD24D31003F662B /* Assets.xcassets */; };
 		95CC0CD42CD24D31003F662B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 95CC0CD32CD24D31003F662B /* Base */; };
 		95CC0CDF2CD24D31003F662B /* TinaDevLabAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CC0CDE2CD24D31003F662B /* TinaDevLabAppTests.swift */; };
 		95CC0CE92CD24D31003F662B /* TinaDevLabAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CC0CE82CD24D31003F662B /* TinaDevLabAppUITests.swift */; };
 		95CC0CEB2CD24D31003F662B /* TinaDevLabAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CC0CEA2CD24D31003F662B /* TinaDevLabAppUITestsLaunchTests.swift */; };
+		95CC14232CD54D270090E39C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95CC14222CD54D270090E39C /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +40,6 @@
 		95CC0CC72CD24D30003F662B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95CC0CC92CD24D30003F662B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		95CC0CCB2CD24D30003F662B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		95CC0CCE2CD24D30003F662B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		95CC0CD02CD24D31003F662B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		95CC0CD32CD24D31003F662B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		95CC0CD52CD24D31003F662B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +48,7 @@
 		95CC0CE42CD24D31003F662B /* TinaDevLabAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinaDevLabAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		95CC0CE82CD24D31003F662B /* TinaDevLabAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinaDevLabAppUITests.swift; sourceTree = "<group>"; };
 		95CC0CEA2CD24D31003F662B /* TinaDevLabAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinaDevLabAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		95CC14222CD54D270090E39C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +102,7 @@
 				95CC0CC72CD24D30003F662B /* AppDelegate.swift */,
 				95CC0CC92CD24D30003F662B /* SceneDelegate.swift */,
 				95CC0CCB2CD24D30003F662B /* ViewController.swift */,
-				95CC0CCD2CD24D30003F662B /* Main.storyboard */,
+				95CC14222CD54D270090E39C /* Main.storyboard */,
 				95CC0CD02CD24D31003F662B /* Assets.xcassets */,
 				95CC0CD22CD24D31003F662B /* LaunchScreen.storyboard */,
 				95CC0CD52CD24D31003F662B /* Info.plist */,
@@ -231,9 +231,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95CC14232CD54D270090E39C /* Main.storyboard in Resources */,
 				95CC0CD12CD24D31003F662B /* Assets.xcassets in Resources */,
 				95CC0CD42CD24D31003F662B /* Base in Resources */,
-				95CC0CCF2CD24D30003F662B /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +297,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		95CC0CCD2CD24D30003F662B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				95CC0CCE2CD24D30003F662B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		95CC0CD22CD24D31003F662B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

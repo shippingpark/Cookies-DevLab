@@ -17,6 +17,22 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // 지출 금액을 입력하는 텍스트뷰
+    private lazy var spendTextFieldView: UIView =  {
+        let view = UIView()
+        
+        view.backgroundColor = UIColor.darkGray
+        view.layer.cornerRadius = 5
+        view.layer.masksToBounds = true
+        
+        return view
+    }()
+    
+    // 지출 금액을 입력하는 텍스트필드
+    
+    override func viewDidLoad() {
+        
+    }
         
     }
     
