@@ -25,6 +25,10 @@ class ViewController: UIViewController {
         view.layer.cornerRadius = 5
         view.layer.masksToBounds = true
         
+        // spendTextFieldView에 텍스트필드, 버튼 올리기
+        view.addSubview(spendTextField)
+        view.addSubview(spendButton)
+        
         return view
     }()
     
@@ -47,7 +51,7 @@ class ViewController: UIViewController {
     private let spendButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("지출", for: .normal)
-        button.setTitleColor(UIColor.lightGray, for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         
         return button
