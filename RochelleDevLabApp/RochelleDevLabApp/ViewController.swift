@@ -95,7 +95,7 @@ class ViewController: UIViewController {
     ])
   }
   
-  func setupButtonAction() {
+  func ButtonAction() {
     button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
   }
   
