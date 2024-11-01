@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     private lazy var spendTextFieldView: UIView =  {
         let view = UIView()
         
-        view.backgroundColor = UIColor.darkGray
+        view.backgroundColor = UIColor.lightGray
         view.layer.cornerRadius = 5
         view.layer.masksToBounds = true
         
@@ -29,6 +29,19 @@ class ViewController: UIViewController {
     }()
     
     // 지출 금액을 입력하는 텍스트필드
+    private lazy var spendTextField: UITextField = {
+        var tf = UITextField()
+        tf.frame.size.height = 50
+        tf.backgroundColor = .clear
+        tf.textColor = .black
+        tf.tintColor = .black
+        tf.autocapitalizationType = .none
+        tf.autocorrectionType = .no
+        tf.spellCheckingType = .no
+        tf.keyboardType = .numberPad
+        
+        return tf
+    }()
     
     override func viewDidLoad() {
         
