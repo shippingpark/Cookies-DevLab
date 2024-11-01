@@ -149,10 +149,10 @@
             </objects>
             <point key="canvasLocation" x="81.679389312977094" y="31.690140845070424"/>
         </scene>
-        <!--Code View Controller-->
+        <!--Spend Record View Controller-->
         <scene sceneID="jer-WD-wcB">
             <objects>
-                <viewController id="bAN-IT-f2t" customClass="CodeViewController" customModule="IODevLabApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bAN-IT-f2t" customClass="SpendRecordViewController" customModule="IODevLabApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="I5P-bx-nSp">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
