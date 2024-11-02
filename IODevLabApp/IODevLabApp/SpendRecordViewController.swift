@@ -33,7 +33,7 @@ class SpendRecordViewController: UIViewController {
     }
     
     private let errorMessageLabel = UILabel().set {
-        $0.text = "error"
+        $0.text = ""
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.textColor = .red
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -115,6 +115,7 @@ class SpendRecordViewController: UIViewController {
     }
 }
 
+// layout
 extension SpendRecordViewController {
     private func layout() {
         layoutSpendInputView()
@@ -178,11 +179,11 @@ extension SpendRecordViewController: UITableViewDelegate, UITableViewDataSource 
         }
         
         cell.setSpendLabelText(spendRecords[indexPath.row])
-        
-//        cell.deleteAction = {
-//            self.spendRecords.remove(at: indexPath.row)
-//            tableView.reloadData()
-//        }
+        cell.deleteAction = {
+            self.spendRecords.remove(at: indexPath.row)
+            tableView.reloadData()
+            self.setSpendBlockFromBottom()
+        }
         
         return cell
     }

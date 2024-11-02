@@ -30,11 +30,22 @@ class SpendRecordTableViewCell: UITableViewCell {
         $0.textColor = .black
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
+    
+    private let deleteButton = UIButton().set {
+        $0.setTitle("X", for: .normal)
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        $0.backgroundColor = .clear
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    var deleteAction: () -> Void = {}
 
     // 셀 초기화
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         layoutCellView()
+        buttonActions()
     }
     
     required init?(coder: NSCoder) {
@@ -61,6 +72,20 @@ class SpendRecordTableViewCell: UITableViewCell {
             unitLabel.centerYAnchor.constraint(equalTo: background.centerYAnchor),
             unitLabel.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -12)
         ])
+        
+        background.addSubview(deleteButton)
+        NSLayoutConstraint.activate([
+            deleteButton.centerYAnchor.constraint(equalTo: background.centerYAnchor),
+            deleteButton.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: 12)
+        ])
+    }
+    
+    private func buttonActions() {
+        deleteButton.addTarget(self, action: #selector(deleteSpend), for: .touchUpInside)
+    }
+    
+    @objc private func deleteSpend() {
+        deleteAction()
     }
     
     func setSpendLabelText(_ text: String) {
