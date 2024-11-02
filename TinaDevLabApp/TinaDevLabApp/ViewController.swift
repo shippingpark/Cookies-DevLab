@@ -140,6 +140,17 @@ class ViewController: UIViewController {
         ])
     }
     
+    // 셀이 아래부터 쌓이도록 설정
+    private func setSpendBlockFromBottom() {
+        let totalHeight = tableView.contentSize.height // TableView 내부 Cell들의 높이 합
+        let visibleHeight = tableView.bounds.size.height // TableView 자체 높이
+
+        // Cell들의 합이 전체 높이보다 작은 경우,
+        // (전체 - Cell들의 합)을 상단의 여백으로 둔다!!
+        let inset = max(0, visibleHeight - totalHeight)
+        tableView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: 0, right: 0)
+    }
+    
     @objc func spendButtonTapped() {
         // cell의 spendOutputLabel에 표시
         guard let spendText = spendTextField.text, !spendText.isEmpty else { return }
@@ -150,6 +161,8 @@ class ViewController: UIViewController {
         // 빈 텍스트배열
         spendTextField.text = ""
         
+        setSpendBlockFromBottom()
+
         tableView.reloadData()
      
     }

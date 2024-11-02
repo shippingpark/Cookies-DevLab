@@ -100,8 +100,10 @@ final class SpendTableViewCell: UITableViewCell {
             spendUnitLabel.centerYAnchor.constraint(equalTo: cellBackground.centerYAnchor),
             spendUnitLabel.trailingAnchor.constraint(equalTo: cellBackground.trailingAnchor, constant: -20),
             
-            spendOutputLabel.leadingAnchor.constraint(equalTo: cellBackground.leadingAnchor, constant: 8),
+            
             spendOutputLabel.centerYAnchor.constraint(equalTo: cellBackground.centerYAnchor),
+            spendOutputLabel.trailingAnchor.constraint(equalTo: spendUnitLabel.trailingAnchor, constant: -15),
+            
             
             deleteButton.centerYAnchor.constraint(equalTo: cellBackground.centerYAnchor),
             deleteButton.leadingAnchor.constraint(equalTo: cellBackground.leadingAnchor, constant: 40),
