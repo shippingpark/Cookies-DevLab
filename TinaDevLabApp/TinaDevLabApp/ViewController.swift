@@ -17,12 +17,11 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // ViewController에 TableView 추가
     private let tableView = UITableView()
     
     // 테이블뷰의 데이터를 표시하기 위한 배열
-    var spendArray: [MTLFunctionStitchingNode] = []
-
-
+    var spendArray: [String] = ["항목1", "항목2", "항목3", "항목4"]
     
     // 지출 금액을 입력하는 텍스트뷰
     private lazy var spendTextFieldView: UIView =  {
@@ -70,6 +69,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         makeUI()
         setupTableView()
         setupTableViewConstraints()
@@ -87,11 +87,7 @@ class ViewController: UIViewController {
         spendButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            
-            //            spendTextFieldView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-            //            spendTextFieldView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
-            //            spendTextFieldView.topAnchor.constraint(equalTo: view.topAnchor, constant: 128),
-            //
+         
             spendTextFieldView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             spendTextFieldView.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 150),
             spendTextFieldView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9), // 비율
@@ -113,30 +109,32 @@ class ViewController: UIViewController {
     }
     func setupTableView() {
         
+        tableView.backgroundColor = .clear
+        
         // 델리게이트 패턴의 대리자 설정
         tableView.dataSource = self
         tableView.delegate = self
         
         // 셀의 높이 설정
-        tableView.rowHeight = 320
+        tableView.rowHeight = 61
         
         // 셀의 등록과정⭐️⭐️⭐️ (스토리보드 사용시에는 스토리보드에서 자동등록)
         tableView.register(SpendTableViewCell.self, forCellReuseIdentifier: "SpendCell")
     }
+    
     func setupTableViewConstraints() {
+        
         view.addSubview(tableView)
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            tableView.topAnchor.constraint(equalTo: spendTextFieldView.topAnchor, constant: 50),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
         ])
     }
-    
-    
-    
 }
 
 
@@ -145,13 +143,15 @@ extension ViewController: UITableViewDataSource {
     
     // 1) 테이블뷰에 몇개의 데이터를 표시할 것인지(셀이 몇개인지)를 뷰컨트롤러에게 물어봄
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      
+    
         return spendArray.count
     }
     
     // 2) 셀의 구성(셀에 표시하고자 하는 데이터 표시)을 뷰컨트롤러에게 물어봄
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell =
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SpendCell", for: indexPath)
+        cell.textLabel?.text = spendArray[indexPath.row]
+    
        return cell
     }
 }
@@ -160,6 +160,7 @@ extension ViewController: UITableViewDelegate {
     
     // 셀이 선택이 되었을때 어떤 동작을 할 것인지 뷰컨트롤러에게 물어봄
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        return
         
     }
 }

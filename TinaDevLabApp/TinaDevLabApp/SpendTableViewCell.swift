@@ -7,24 +7,17 @@
 
 import UIKit
 
-final class MyTableViewCell: UITableViewCell {
-    
-    let deleteButton: UIButton = {
-        let button = UIButton()
-        return button
-        
-    }()
-    
-    let spendRecordsLabel: UILabel = {
-        let label = UILabel()
-        return label
-        
-    }()
-    
-    let spendUnitLabel: UILabel = {
-        let label = UILabel()
-        return label
-    }()
-    
+class SpendTableViewCell: UITableViewCell {
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+
 }
-    
