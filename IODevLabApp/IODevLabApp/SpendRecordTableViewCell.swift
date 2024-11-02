@@ -62,5 +62,8 @@ class SpendRecordTableViewCell: UITableViewCell {
             unitLabel.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -12)
         ])
     }
-
+    
+    func setSpendLabelText(_ text: String) {
+        spendLabel.text = text
+    }
 }

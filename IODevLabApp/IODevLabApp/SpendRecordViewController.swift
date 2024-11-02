@@ -47,19 +47,79 @@ class SpendRecordViewController: UIViewController {
         $0.register(SpendRecordTableViewCell.self, forCellReuseIdentifier: SpendRecordTableViewCell.identifier)
     }
     
+    private var spendRecords: [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        layoutSpendInputView()
-        layoutErrorMessageLabel()
-        layoutSpendRecordTableView()
+        layout()
+        setButtonAction()
         
         spendRecordTableView.delegate = self
         spendRecordTableView.dataSource = self
         
-        // FIXME: 왜 완료 툴바 안뜨냐
+        // 키보드 '완료' 버튼 툴바에 추가
         spendTextField.delegate = self
+        addDoneButtonOnKeyboard()
+    }
+    
+    private func setButtonAction() {
+        spendButton.addTarget(self, action: #selector(spendButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func spendButtonTapped() {
+        if let spendTextFieldText = spendTextField.text, spendTextFieldText.isEmpty == false {
+            // 텍스트필드가 비어있지 않을 때 동작
+            formatSpendValue(spendTextFieldText)
+            
+            // 지출 텍스트필드의 값을 지워준다
+            spendTextField.text = ""
+            
+        } else {
+            // 텍스트필드가 비어있을 때 - 레이블에 숫자를 입력 후에 누르라는 메시지 전달
+            errorMessageLabel.text = "숫자를 입력해주세유~~"
+        }
+    }
+    
+    // 셀이 아래부터 쌓이도록 설정
+    private func setSpendBlockFromBottom() {
+        let totalHeight = spendRecordTableView.contentSize.height // TableView 내부 Cell들의 높이 합
+        let visibleHeight = spendRecordTableView.bounds.size.height // TableView 자체 높이
+        
+        // Cell들의 합이 전체 높이보다 작은 경우,
+        // (전체 - Cell들의 합)을 상단의 여백으로 둔다!!
+        let inset = max(0, visibleHeight - totalHeight)
+        spendRecordTableView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: 0, right: 0)
+    }
+    
+    private func formatSpendValue(_ spendTextFieldText: String) {
+        if let spendValue = Int(spendTextFieldText) {
+            // TextField의 값이 숫자인 경우
+            // 숫자 format 형식 지정
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = .decimal
+            let formattedNumber = numberFormatter.string(from: spendValue as NSNumber) ?? ""
+            
+            // format된 지출 텍스트필드의 값을 지출 레이블로 가져온다
+            spendRecords.insert(formattedNumber, at: 0)
+            spendRecordTableView.reloadData()
+            setSpendBlockFromBottom()
+            
+            // TODO: 음.. 지출버튼이 눌리고 나서 키보드가 내려가야할까..?
+            
+        } else {
+            // TextField의 값이 숫자가 아닌 경우
+            errorMessageLabel.text = "숫자만 입력하세유~~"
+        }
+    }
+}
+
+extension SpendRecordViewController {
+    private func layout() {
+        layoutSpendInputView()
+        layoutErrorMessageLabel()
+        layoutSpendRecordTableView()
     }
     
     private func layoutSpendInputView() {
@@ -108,8 +168,7 @@ class SpendRecordViewController: UIViewController {
 // TableView 설정
 extension SpendRecordViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return spendRecords.count
-        return 3
+        return spendRecords.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -118,9 +177,8 @@ extension SpendRecordViewController: UITableViewDelegate, UITableViewDataSource 
             return UITableViewCell()
         }
         
-//        cell.spendValueLabel.text = "wow"
+        cell.setSpendLabelText(spendRecords[indexPath.row])
         
-//        cell.spendValueLabel.text = spendRecords[indexPath.row]
 //        cell.deleteAction = {
 //            self.spendRecords.remove(at: indexPath.row)
 //            tableView.reloadData()
