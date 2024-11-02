@@ -156,15 +156,16 @@ class ViewController: UIViewController {
         guard let spendText = spendTextField.text, !spendText.isEmpty else { return }
         
         // 배열에 숫자 추가
-        spendArray.append(spendText)
+        spendArray.insert(spendText, at: 0)
         
         // 빈 텍스트배열
         spendTextField.text = ""
+
+        tableView.reloadData()
         
         setSpendBlockFromBottom()
 
-        tableView.reloadData()
-     
+       
     }
 }
 
@@ -219,6 +220,8 @@ extension ViewController: SpendTableViewCellDelegate {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         spendArray.remove(at: indexPath.row) // Remove the item from the array
         tableView.deleteRows(at: [indexPath], with: .automatic) // Remove the cell from the table view
+        self.setSpendBlockFromBottom()
+
     }
 }
 
