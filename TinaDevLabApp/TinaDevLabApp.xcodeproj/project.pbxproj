@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		957E0A132CD6B3A500625981 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E0A122CD6B3A500625981 /* SwiftUIView.swift */; };
 		95CC0CC82CD24D30003F662B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CC0CC72CD24D30003F662B /* AppDelegate.swift */; };
 		95CC0CCA2CD24D30003F662B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CC0CC92CD24D30003F662B /* SceneDelegate.swift */; };
 		95CC0CCC2CD24D30003F662B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CC0CCB2CD24D30003F662B /* ViewController.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		957E0A122CD6B3A500625981 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		95CC0CC42CD24D30003F662B /* TinaDevLabApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinaDevLabApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95CC0CC72CD24D30003F662B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95CC0CC92CD24D30003F662B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				95CC0CC72CD24D30003F662B /* AppDelegate.swift */,
 				95CC0CC92CD24D30003F662B /* SceneDelegate.swift */,
 				95CC0CCB2CD24D30003F662B /* ViewController.swift */,
+				957E0A122CD6B3A500625981 /* SwiftUIView.swift */,
 				95DF3F6F2CD5D92400B18B78 /* SpendTableViewCell.swift */,
 				95CC14222CD54D270090E39C /* Main.storyboard */,
 				95CC0CD02CD24D31003F662B /* Assets.xcassets */,
@@ -265,6 +268,7 @@
 				95CC0CCC2CD24D30003F662B /* ViewController.swift in Sources */,
 				95CC0CC82CD24D30003F662B /* AppDelegate.swift in Sources */,
 				95CC0CCA2CD24D30003F662B /* SceneDelegate.swift in Sources */,
+				957E0A132CD6B3A500625981 /* SwiftUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
