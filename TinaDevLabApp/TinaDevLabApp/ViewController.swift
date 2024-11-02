@@ -17,73 +17,158 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var spendTextField: UITextField!
-    @IBOutlet weak var spendTextView: UIView!
-    @IBOutlet weak var spendTappedButton: UIButton!
+    // ViewController에 TableView 추가
+    private let tableView = UITableView()
     
+    // 테이블뷰의 데이터를 표시하기 위한 배열
+    var spendArray: [String] = ["항목1", "항목2", "항목3", "항목4"]
     
-    @IBOutlet weak var table: UITableView!
-    let cellName: String = "customeCell"
-    var cellTitle: [String] = []
+    // 지출 금액을 입력하는 텍스트뷰
+    private lazy var spendTextFieldView: UIView =  {
+        let view = UIView()
+        
+        view.backgroundColor = UIColor.lightGray
+        view.layer.cornerRadius = 28
+        view.layer.masksToBounds = true
+        
+        // spendTextFieldView에 텍스트필드, 버튼 올리기
+        view.addSubview(spendTextField)
+        view.addSubview(spendButton)
+        
+        return view
+    }()
+    
+    // 지출 금액을 입력하는 텍스트필드
+    private lazy var spendTextField: UITextField = {
+        var tf = UITextField()
+        tf.frame.size.height = 50
+        tf.backgroundColor = .clear
+        tf.textColor = .black
+        tf.tintColor = .black
+        tf.autocapitalizationType = .none
+        tf.autocorrectionType = .no
+        tf.spellCheckingType = .no
+        tf.keyboardType = .numberPad
+        
+        return tf
+    }()
+    
+    // 지출 금액을 입력하는 버튼
+    private let spendButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.backgroundColor = .white
+        button.setTitle("지출", for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        button.layer.cornerRadius = 16
+        button.layer.masksToBounds = true
+        
+        return button
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 지출 텍스트필드와 값 view radius 지정
-        spendTextView.layer.cornerRadius = 20
-        spendTappedButton.layer.cornerRadius = 15
-        
-        table.delegate = self
-        // 없으면, 눌렀는데 동작을 안해
-        // 이 시점에 이 method
-        // 시점에 필요한 method
-        // head는 있고 구체적인 내용은 없음
-        
-        table.dataSource = self
-        // 없으면, 화면이 안 보여
-        //viewController가 인스턴스?
-        //프로토콜 = 자격증 채택개념
-        //table뷰가 nil값을 들고 있음
-        //dataSource라는 타입
-        //깡통인 cell 안에 타입을 넣어주려 함
-        
+        makeUI()
+        setupTableView()
+        setupTableViewConstraints()
     }
     
-    // 지출 입력 버튼
-    @IBAction func spendTapped(_ sender: UIButton) {
+    func makeUI () {
         
-        // GPT 코드
-        // 1. spendTextField에 입력된 텍스트 가져오기
-        guard let text = spendTextField.text, !text.isEmpty else {
-            return  // 텍스트가 없으면 아무 작업도 하지 않음
-        }
+        //spendTextFieldView를 view에 올리기
+        view.addSubview(spendTextFieldView)
         
-        // 2. 입력된 숫자를 배열에 추가
-        cellTitle.insert(text, at: 0)  // 위쪽에서부터 숫자가 입력되도록 배열 앞에 추가
+        //오토레이아웃 설정
+        spendTextFieldView.translatesAutoresizingMaskIntoConstraints = false
         
-        // 3. 테이블 뷰를 리로드하여 업데이트
-        table.reloadData()
+        spendTextField.translatesAutoresizingMaskIntoConstraints = false
+        spendButton.translatesAutoresizingMaskIntoConstraints = false
         
-        // 4. 텍스트 필드 초기화
-        spendTextField.text = ""
+        NSLayoutConstraint.activate([
+         
+            spendTextFieldView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            spendTextFieldView.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 150),
+            spendTextFieldView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9), // 비율
+            spendTextFieldView.heightAnchor.constraint(equalToConstant: 50),
+            
+            
+            spendButton.widthAnchor.constraint(equalTo: spendTextFieldView.widthAnchor, multiplier: 0.15),
+            spendButton.trailingAnchor.constraint(equalTo: spendTextFieldView.trailingAnchor, constant: -11),
+            spendButton.topAnchor.constraint(equalTo: spendTextFieldView.topAnchor, constant: 9),
+            spendButton.bottomAnchor.constraint(equalTo: spendTextFieldView.bottomAnchor, constant: -9),
+            
+            spendTextField.topAnchor.constraint(equalTo: spendTextFieldView.topAnchor, constant: 17),
+            spendTextField.bottomAnchor.constraint(equalTo: spendTextFieldView.bottomAnchor, constant: -17),
+            spendTextField.leadingAnchor.constraint(equalTo: spendTextFieldView.leadingAnchor, constant: 22),
+            spendTextField.trailingAnchor.constraint(equalTo: spendButton.trailingAnchor, constant: -15)
+            
+        ])
         
     }
+    func setupTableView() {
+        
+        tableView.backgroundColor = .clear
+        
+        // 델리게이트 패턴의 대리자 설정
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        // 셀의 높이 설정
+        tableView.rowHeight = 61
+        
+        // 셀의 등록과정⭐️⭐️⭐️ (스토리보드 사용시에는 스토리보드에서 자동등록)
+        tableView.register(SpendTableViewCell.self, forCellReuseIdentifier: "SpendCell")
+    }
     
+    func setupTableViewConstraints() {
+        
+        view.addSubview(tableView)
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: spendTextFieldView.topAnchor, constant: 50),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
+        ])
+    }
     
+    @objc func spendButtonTapped() {
+        print("spend버튼이 눌렸습니다")
+        
+    }
 }
 
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
+
+
+extension ViewController: UITableViewDataSource {
+    
+    // 1) 테이블뷰에 몇개의 데이터를 표시할 것인지(셀이 몇개인지)를 뷰컨트롤러에게 물어봄
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellTitle.count
+    
+        return spendArray.count
     }
     
+    // 2) 셀의 구성(셀에 표시하고자 하는 데이터 표시)을 뷰컨트롤러에게 물어봄
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let customeCell = table.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as! CustomeCell
-        
-        customeCell.spendOutputLabel.text = cellTitle[indexPath.row]
-//        customeCell.spendOutputLabel.text = spendTextField.text
-        return customeCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SpendCell", for: indexPath)
+        cell.textLabel?.text = spendArray[indexPath.row]
+    
+       return cell
+    }
+}
+
+extension ViewController: UITableViewDelegate {
+    
+    // 셀이 선택이 되었을때 어떤 동작을 할 것인지 뷰컨트롤러에게 물어봄
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        return
         
     }
 }
+
+
 
