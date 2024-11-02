@@ -62,6 +62,7 @@ class ViewController: UIViewController {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         button.layer.cornerRadius = 16
         button.layer.masksToBounds = true
+        button.addTarget(self, action: #selector(spendButtonTapped), for: .touchUpInside)
         
         return button
     }()
@@ -137,7 +138,7 @@ class ViewController: UIViewController {
     }
     
     @objc func spendButtonTapped() {
-        print("spend버튼이 눌렸습니다")
+      // cell의 spendOutputLabel에 표시
         
     }
 }

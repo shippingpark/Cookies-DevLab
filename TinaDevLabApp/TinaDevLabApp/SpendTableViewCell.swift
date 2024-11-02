@@ -10,30 +10,33 @@ import UIKit
 class SpendTableViewCell: UITableViewCell {
     
     //배경
-    private lazy var background: UIView = {
-        background.backgroundColor = UIColor.lightGray
-        background.layer.cornerRadius = 28
-        background.layer.masksToBounds = true
+    private lazy var cellBackground: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.lightGray
+        view.layer.cornerRadius = 28
+        view.layer.masksToBounds = true
         
-        return background
+        return view
     }()
     
     //지출금액
     
     private lazy var spendOutputLabel: UILabel = {
-        spendOutputLabel.font = UIFont.systemFont(ofSize: 14)
-        spendOutputLabel.textColor = .black
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .black
         
-        return spendOutputLabel
+        return label
     }()
     
     //원
     private lazy var spendUnitLabel: UILabel = {
-        spendUnitLabel.text = "원"
-        spendUnitLabel.font = UIFont.systemFont(ofSize: 14)
-        spendUnitLabel.textColor = .black
-        
-        return spendUnitLabel
+        let label = UILabel()
+        label.text = "원"
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .black
+
+        return label
     }()
     
     //X버튼
