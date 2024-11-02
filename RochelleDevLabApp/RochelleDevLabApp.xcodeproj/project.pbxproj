@@ -10,13 +10,12 @@
 		6D97A8512CD24D4C00164183 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97A8502CD24D4C00164183 /* AppDelegate.swift */; };
 		6D97A8532CD24D4C00164183 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97A8522CD24D4C00164183 /* SceneDelegate.swift */; };
 		6D97A8552CD24D4C00164183 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97A8542CD24D4C00164183 /* ViewController.swift */; };
-		6D97A8582CD24D4C00164183 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 6D97A8572CD24D4C00164183 /* Base */; };
 		6D97A85A2CD24D4D00164183 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D97A8592CD24D4D00164183 /* Assets.xcassets */; };
 		6D97A85D2CD24D4D00164183 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 6D97A85C2CD24D4D00164183 /* Base */; };
 		6D97A8682CD24D4D00164183 /* RochelleDevLabAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97A8672CD24D4D00164183 /* RochelleDevLabAppTests.swift */; };
 		6D97A8722CD24D4D00164183 /* RochelleDevLabAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97A8712CD24D4D00164183 /* RochelleDevLabAppUITests.swift */; };
 		6D97A8742CD24D4D00164183 /* RochelleDevLabAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97A8732CD24D4D00164183 /* RochelleDevLabAppUITestsLaunchTests.swift */; };
-		6D97A8812CD3E96F00164183 /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D97A8802CD3E96F00164183 /* ResultTableViewCell.swift */; };
+		6DAB1DA52CD5D9CD00ECA059 /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAB1DA42CD5D9CD00ECA059 /* ExpenseCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +40,6 @@
 		6D97A8502CD24D4C00164183 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6D97A8522CD24D4C00164183 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		6D97A8542CD24D4C00164183 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		6D97A8572CD24D4C00164183 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6D97A8592CD24D4D00164183 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6D97A85C2CD24D4D00164183 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6D97A85E2CD24D4D00164183 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -50,7 +48,7 @@
 		6D97A86D2CD24D4D00164183 /* RochelleDevLabAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RochelleDevLabAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D97A8712CD24D4D00164183 /* RochelleDevLabAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RochelleDevLabAppUITests.swift; sourceTree = "<group>"; };
 		6D97A8732CD24D4D00164183 /* RochelleDevLabAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RochelleDevLabAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		6D97A8802CD3E96F00164183 /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
+		6DAB1DA42CD5D9CD00ECA059 /* ExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,8 +102,7 @@
 				6D97A8502CD24D4C00164183 /* AppDelegate.swift */,
 				6D97A8522CD24D4C00164183 /* SceneDelegate.swift */,
 				6D97A8542CD24D4C00164183 /* ViewController.swift */,
-				6D97A8802CD3E96F00164183 /* ResultTableViewCell.swift */,
-				6D97A8562CD24D4C00164183 /* Main.storyboard */,
+				6DAB1DA42CD5D9CD00ECA059 /* ExpenseCell.swift */,
 				6D97A8592CD24D4D00164183 /* Assets.xcassets */,
 				6D97A85B2CD24D4D00164183 /* LaunchScreen.storyboard */,
 				6D97A85E2CD24D4D00164183 /* Info.plist */,
@@ -236,7 +233,6 @@
 			files = (
 				6D97A85A2CD24D4D00164183 /* Assets.xcassets in Resources */,
 				6D97A85D2CD24D4D00164183 /* Base in Resources */,
-				6D97A8582CD24D4C00164183 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,7 +259,7 @@
 			files = (
 				6D97A8552CD24D4C00164183 /* ViewController.swift in Sources */,
 				6D97A8512CD24D4C00164183 /* AppDelegate.swift in Sources */,
-				6D97A8812CD3E96F00164183 /* ResultTableViewCell.swift in Sources */,
+				6DAB1DA52CD5D9CD00ECA059 /* ExpenseCell.swift in Sources */,
 				6D97A8532CD24D4C00164183 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,14 +297,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		6D97A8562CD24D4C00164183 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6D97A8572CD24D4C00164183 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		6D97A85B2CD24D4D00164183 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -451,7 +439,6 @@
 				INFOPLIST_FILE = RochelleDevLabApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -479,7 +466,6 @@
 				INFOPLIST_FILE = RochelleDevLabApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
