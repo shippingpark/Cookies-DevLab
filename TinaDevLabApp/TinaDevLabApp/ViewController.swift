@@ -20,14 +20,14 @@ class ViewController: UIViewController {
     // ViewController에 TableView 추가
     private let tableView = UITableView()
     
-    // 테이블뷰의 데이터를 표시하기 위한 배열
-    var spendArray: [String] = ["항목1", "항목2", "항목3", "항목4"]
+    // 테이블뷰의 데이터를 표시하기 위한 배열 - dataList
+    var spendArray: [String] = []
     
     // 지출 금액을 입력하는 텍스트뷰
     private lazy var spendTextFieldView: UIView =  {
         let view = UIView()
         
-        view.backgroundColor = UIColor.lightGray
+        view.backgroundColor = .systemGray5
         view.layer.cornerRadius = 28
         view.layer.masksToBounds = true
         
@@ -138,8 +138,17 @@ class ViewController: UIViewController {
     }
     
     @objc func spendButtonTapped() {
-      // cell의 spendOutputLabel에 표시
+        // cell의 spendOutputLabel에 표시
+        guard let spendText = spendTextField.text, !spendText.isEmpty else { return }
         
+        // 배열에 숫자 추가
+        spendArray.append(spendText)
+        
+        // 빈 텍스트배열
+        spendTextField.text = ""
+        
+        tableView.reloadData()
+     
     }
 }
 
@@ -149,7 +158,7 @@ extension ViewController: UITableViewDataSource {
     
     // 1) 테이블뷰에 몇개의 데이터를 표시할 것인지(셀이 몇개인지)를 뷰컨트롤러에게 물어봄
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
+        
         return spendArray.count
     }
     
@@ -157,8 +166,8 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SpendCell", for: indexPath)
         cell.textLabel?.text = spendArray[indexPath.row]
-    
-       return cell
+        
+        return cell
     }
 }
 
