@@ -66,6 +66,20 @@ class SpendRecordViewController: UIViewController {
     
     private func setButtonAction() {
         spendButton.addTarget(self, action: #selector(spendButtonTapped), for: .touchUpInside)
+        spendTextField.addTarget(self, action: #selector(editingChangedSpendTextField), for: .editingChanged)
+    }
+    
+    // TextField 입력 길이 제한
+    @objc func editingChangedSpendTextField(_ sender: UITextField) {
+        guard let spendTextFieldText = sender.text else { return }
+        
+        if spendTextFieldText.count > 15 {
+            sender.deleteBackward()
+            
+            errorMessageLabel.text = "15자리까지 입력할 수 있어유~~"
+        } else {
+            errorMessageLabel.text = ""
+        }
     }
     
     @objc private func spendButtonTapped() {
