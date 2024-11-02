@@ -62,9 +62,10 @@ class ViewController: UIViewController {
                 // 숫자 format 형식 지정
                 let numberFormatter = NumberFormatter()
                 numberFormatter.numberStyle = .decimal
+                let formattedNumber = numberFormatter.string(from: spendValue as NSNumber) ?? ""
                 
                 // format된 지출 텍스트필드의 값을 지출 레이블로 가져온다
-                spendRecords.insert(numberFormatter.string(from: spendValue as NSNumber) ?? "", at: 0)
+                spendRecords.insert(formattedNumber, at: 0)
                 spendTableView.reloadData()
                 setSpendBlockFromBottom()
                 
@@ -120,6 +121,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+// 키보드에 완료 버튼 추가
 extension ViewController: UITextFieldDelegate {
     func addDoneButtonOnKeyboard() {
         let toolbar = UIToolbar()
