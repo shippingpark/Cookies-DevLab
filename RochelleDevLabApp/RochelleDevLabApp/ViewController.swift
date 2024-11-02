@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, ExpenseCellDelegate, UITableViewDelegate {
   
   // UI 요소 정의
   let containerView = UIView()
@@ -84,7 +84,8 @@ class ViewController: UIViewController {
   }
   
   func setupTableView() {
-    tableView.dataSource = self // 데이터 소스 설정
+    tableView.dataSource = self
+    tableView.delegate = self
     
     // TableView 설정
     view.addSubview(tableView)
@@ -133,6 +134,15 @@ class ViewController: UIViewController {
     adjustTableViewInsets()
   }
   
+  func didTapDeleteButton(on cell: ExpenseCell) {
+    guard let indexPath = tableView.indexPath(for: cell) else { return }
+    expenses.remove(at: indexPath.row) // 배열에서 데이터 삭제
+    tableView.deleteRows(at: [indexPath], with: .automatic) // 테이블 뷰에서 삭제
+    
+    adjustTableViewInsets()
+  }
+  
+  
   // 테이블 뷰의 인셋을 조정하는 메서드
   private func adjustTableViewInsets() {
     let totalHeight = tableView.contentSize.height // TableView 내부 Cell들의 높이 합
@@ -155,7 +165,8 @@ extension ViewController: UITableViewDataSource {
       return UITableViewCell()
     }
     let expenseText = expenses[indexPath.row] // 순서대로 설정
-            cell.configure(with: expenseText)
-            return cell
+    cell.delegate = self
+    cell.configure(with: expenseText)
+    return cell
   }
 }
