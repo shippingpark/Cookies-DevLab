@@ -23,9 +23,9 @@ class ViewController: UIViewController {
     
     view.backgroundColor = .white
     
-    setupContainerView()
-    setupTableView()
-    setupButtonAction()
+    setupContainerView() // 컨테이너 뷰 설정
+    setupTableView() // 테이블 뷰 설정
+    setupButtonAction() // 버튼 액션 설정
     
     // ExpenseCell을 셀로 등록
     tableView.register(ExpenseCell.self, forCellReuseIdentifier: "ExpenseCell")
@@ -84,7 +84,7 @@ class ViewController: UIViewController {
   }
   
   func setupTableView() {
-    tableView.dataSource = self
+    tableView.dataSource = self // 데이터 소스 설정
     
     // TableView 설정
     view.addSubview(tableView)
@@ -97,6 +97,7 @@ class ViewController: UIViewController {
     ])
     
     tableView.rowHeight = 50
+    tableView.separatorStyle = .none
   }
   
   func setupButtonAction() {
@@ -109,6 +110,8 @@ class ViewController: UIViewController {
       expenses.append("정확히 숫자를 입력해주세요")
       tableView.reloadData()
       textField.text = ""
+      textField.resignFirstResponder() // 키패드 내리기
+      adjustTableViewInsets() // 테이블 뷰 여백 조정
       return
     }
     
@@ -118,29 +121,41 @@ class ViewController: UIViewController {
       let formatter = NumberFormatter()
       formatter.numberStyle = .decimal
       if let formattedNumber = formatter.string(from: NSNumber(value: number)) {
-        expenses.append(formattedNumber)
+        expenses.insert(formattedNumber, at: 0)
       }
     } else {
-      expenses.append("정확한 숫자를 입력해주세요")
+      expenses.insert("정확한 숫자를 입력해주세요", at: 0)
     }
     
     tableView.reloadData()
     textField.text = ""
+    textField.resignFirstResponder()
+    adjustTableViewInsets()
+  }
+  
+  // 테이블 뷰의 인셋을 조정하는 메서드
+  private func adjustTableViewInsets() {
+    let totalHeight = tableView.contentSize.height // TableView 내부 Cell들의 높이 합
+    let visibleHeight = tableView.bounds.size.height // TableView 자체 높이
+    
+    // Cell들의 합이 전체 높이보다 작은 경우, 상단의 여백을 설정
+    let inset = max(0, visibleHeight - totalHeight)
+    tableView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: 0, right: 0) // 상단 여백 설정
   }
 }
 
 // UITableViewDataSource
 extension ViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return expenses.count
+    return expenses.count // 배열의 개수 반환
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenseCell", for: indexPath) as? ExpenseCell else {
       return UITableViewCell()
     }
-    let expenseText = expenses[indexPath.row]
-    cell.configure(with: expenseText)
-    return cell
+    let expenseText = expenses[indexPath.row] // 순서대로 설정
+            cell.configure(with: expenseText)
+            return cell
   }
 }
