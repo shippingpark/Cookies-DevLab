@@ -135,6 +135,11 @@ class ViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
         ])
     }
+    
+    @objc func spendButtonTapped() {
+        print("spend버튼이 눌렸습니다")
+        
+    }
 }
 
 
