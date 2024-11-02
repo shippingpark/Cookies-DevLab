@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 // 프로토콜 ? 자격증
 // self ? 나 자신
@@ -17,6 +18,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    
+
+
     // ViewController에 TableView 추가
     private let tableView = UITableView()
     
@@ -71,6 +75,23 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // SwiftUI 화면
+        let vc = UIHostingController(rootView: SwiftUIView())
+        
+        let swiftUiView = vc.view!
+        swiftUiView.translatesAutoresizingMaskIntoConstraints = false
+        
+        addChild(vc)
+        view.addSubview(swiftUiView)
+      
+        NSLayoutConstraint.activate([
+            swiftUiView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            swiftUiView.topAnchor.constraint(equalTo: view.topAnchor, constant: 200)
+        ])
+        
+       
+        vc.didMove(toParent: self)
+        
         // 테이블뷰 선 삭제
         tableView.separatorStyle = .none
         
@@ -78,6 +99,9 @@ class ViewController: UIViewController {
         setupTableView()
         setupTableViewConstraints()
     }
+    
+    
+    
     
     func makeUI () {
         
@@ -144,28 +168,29 @@ class ViewController: UIViewController {
     private func setSpendBlockFromBottom() {
         let totalHeight = tableView.contentSize.height // TableView 내부 Cell들의 높이 합
         let visibleHeight = tableView.bounds.size.height // TableView 자체 높이
-
+        
         // Cell들의 합이 전체 높이보다 작은 경우,
         // (전체 - Cell들의 합)을 상단의 여백으로 둔다!!
         let inset = max(0, visibleHeight - totalHeight)
         tableView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: 0, right: 0)
+        
+      
     }
     
     @objc func spendButtonTapped() {
         // cell의 spendOutputLabel에 표시
         guard let spendText = spendTextField.text, !spendText.isEmpty else { return }
         
-        // 배열에 숫자 추가
-//        spendArray.append(spendText)
         spendArray.insert(spendText, at: 0)
         
         // 빈 텍스트배열
         spendTextField.text = ""
-
+        
         tableView.reloadData()
         setSpendBlockFromBottom()
-
-       
+        
+      
+        
     }
 }
 
@@ -178,30 +203,30 @@ extension ViewController: UITableViewDataSource {
     }
     
     // 2) 셀의 구성(셀에 표시하고자 하는 데이터 표시)을 뷰컨트롤러에게 물어봄
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "SpendCell", for: indexPath)
-//        cell.textLabel?.text = spendArray[indexPath.row]
-//        
-//        
-//        return cell
-//    }
+    //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    //        let cell = tableView.dequeueReusableCell(withIdentifier: "SpendCell", for: indexPath)
+    //        cell.textLabel?.text = spendArray[indexPath.row]
+    //
+    //
+    //        return cell
+    //    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SpendCell", for: indexPath) as? SpendTableViewCell else {
-                return UITableViewCell()
-            }
-            
-            // 델리게이트 설정
-            cell.delegate = self
-            
-            // 셀의 텍스트 설정
-            cell.spendOutputLabel.text = spendArray[indexPath.row]
-            
-            // 선택했을 때 회색으로 변하지 않게 설정
-            cell.selectionStyle = .none
-            
-            return cell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SpendCell", for: indexPath) as? SpendTableViewCell else {
+            return UITableViewCell()
         }
+        
+        // 델리게이트 설정
+        cell.delegate = self
+        
+        // 셀의 텍스트 설정
+        cell.spendOutputLabel.text = spendArray[indexPath.row]
+        
+        // 선택했을 때 회색으로 변하지 않게 설정
+        cell.selectionStyle = .none
+        
+        return cell
+    }
 }
 
 extension ViewController: UITableViewDelegate {
@@ -211,7 +236,7 @@ extension ViewController: UITableViewDelegate {
         return
         
     }
-
+    
 }
 
 extension ViewController: SpendTableViewCellDelegate {
@@ -221,7 +246,7 @@ extension ViewController: SpendTableViewCellDelegate {
         spendArray.remove(at: indexPath.row) // Remove the item from the array
         tableView.deleteRows(at: [indexPath], with: .automatic) // Remove the cell from the table view
         self.setSpendBlockFromBottom()
-
+        
     }
 }
 
