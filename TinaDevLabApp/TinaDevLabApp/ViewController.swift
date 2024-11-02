@@ -71,6 +71,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // 테이블뷰 선 삭제
+        tableView.separatorStyle = .none
+        
         makeUI()
         setupTableView()
         setupTableViewConstraints()
@@ -152,8 +155,6 @@ class ViewController: UIViewController {
     }
 }
 
-
-
 extension ViewController: UITableViewDataSource {
     
     // 1) 테이블뷰에 몇개의 데이터를 표시할 것인지(셀이 몇개인지)를 뷰컨트롤러에게 물어봄
@@ -163,12 +164,30 @@ extension ViewController: UITableViewDataSource {
     }
     
     // 2) 셀의 구성(셀에 표시하고자 하는 데이터 표시)을 뷰컨트롤러에게 물어봄
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "SpendCell", for: indexPath)
+//        cell.textLabel?.text = spendArray[indexPath.row]
+//        
+//        
+//        return cell
+//    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SpendCell", for: indexPath)
-        cell.textLabel?.text = spendArray[indexPath.row]
-        
-        return cell
-    }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SpendCell", for: indexPath) as? SpendTableViewCell else {
+                return UITableViewCell()
+            }
+            
+            // 델리게이트 설정
+            cell.delegate = self
+            
+            // 셀의 텍스트 설정
+            cell.spendOutputLabel.text = spendArray[indexPath.row]
+            
+            // 선택했을 때 회색으로 변하지 않게 설정
+            cell.selectionStyle = .none
+            
+            return cell
+        }
 }
 
 extension ViewController: UITableViewDelegate {
@@ -178,7 +197,15 @@ extension ViewController: UITableViewDelegate {
         return
         
     }
+
 }
 
-
+extension ViewController: SpendTableViewCellDelegate {
+    
+    func didTapDeleteButton(in cell: SpendTableViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        spendArray.remove(at: indexPath.row) // Remove the item from the array
+        tableView.deleteRows(at: [indexPath], with: .automatic) // Remove the cell from the table view
+    }
+}
 
