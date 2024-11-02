@@ -32,11 +32,31 @@ class SpendRecordViewController: UIViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
+    private let errorMessageLabel = UILabel().set {
+        $0.text = "error"
+        $0.font = UIFont.systemFont(ofSize: 14)
+        $0.textColor = .red
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private lazy var spendRecordTableView = UITableView().set {
+        $0.backgroundColor = .clear
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.separatorStyle = .none
+        
+        $0.register(SpendRecordTableViewCell.self, forCellReuseIdentifier: SpendRecordTableViewCell.identifier)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
         layoutSpendInputView()
+        layoutErrorMessageLabel()
+        layoutSpendRecordTableView()
+        
+        spendRecordTableView.delegate = self
+        spendRecordTableView.dataSource = self
         
         // FIXME: 왜 완료 툴바 안뜨냐
         spendTextField.delegate = self
@@ -63,10 +83,50 @@ class SpendRecordViewController: UIViewController {
             spendButton.centerYAnchor.constraint(equalTo: spendInputView.centerYAnchor),
             spendButton.trailingAnchor.constraint(equalTo: spendInputView.trailingAnchor, constant: -12)
         ])
+    }
+    
+    private func layoutErrorMessageLabel() {
+        view.addSubview(errorMessageLabel)
+        NSLayoutConstraint.activate([
+            errorMessageLabel.heightAnchor.constraint(equalToConstant: 16),
+            errorMessageLabel.topAnchor.constraint(equalTo: spendInputView.bottomAnchor, constant: 8),
+            errorMessageLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30)
+        ])
+    }
+    
+    private func layoutSpendRecordTableView() {
+        view.addSubview(spendRecordTableView)
+        NSLayoutConstraint.activate([
+            spendRecordTableView.topAnchor.constraint(equalTo: errorMessageLabel.bottomAnchor, constant: 20),
+            spendRecordTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            spendRecordTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            spendRecordTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+    }
+}
+
+// TableView 설정
+extension SpendRecordViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return spendRecords.count
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SpendRecordTableViewCell.identifier, 
+                                                       for: indexPath) as? SpendRecordTableViewCell else {
+            return UITableViewCell()
+        }
         
-//        spendTextField.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-//        spendTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
-//        spendTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 25).isActive = true
+//        cell.spendValueLabel.text = "wow"
+        
+//        cell.spendValueLabel.text = spendRecords[indexPath.row]
+//        cell.deleteAction = {
+//            self.spendRecords.remove(at: indexPath.row)
+//            tableView.reloadData()
+//        }
+        
+        return cell
     }
 }
 
