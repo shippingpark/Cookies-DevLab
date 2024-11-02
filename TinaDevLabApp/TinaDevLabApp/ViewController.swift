@@ -87,7 +87,7 @@ class ViewController: UIViewController {
         spendButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-         
+            
             spendTextFieldView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             spendTextFieldView.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 150),
             spendTextFieldView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9), // 비율
