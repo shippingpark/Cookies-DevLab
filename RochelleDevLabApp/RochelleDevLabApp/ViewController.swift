@@ -26,9 +26,12 @@ class ViewController: UIViewController {
     setupContainerView()
     setupTableView()
     setupButtonAction()
+    
+    // ExpenseCell을 셀로 등록
+    tableView.register(ExpenseCell.self, forCellReuseIdentifier: "ExpenseCell")
   }
   
-  private func setupContainerView() {
+  func setupContainerView() {
     // ContainerView 설정
     containerView.backgroundColor = .systemGray6
     containerView.layer.cornerRadius = 25
@@ -82,17 +85,19 @@ class ViewController: UIViewController {
   
   func setupTableView() {
     tableView.dataSource = self
-    tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     
     // TableView 설정
     view.addSubview(tableView)
     tableView.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       tableView.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 20),
-      tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+      tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
       tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
     ])
+    
+    tableView.rowHeight = 50
+    
   }
   
   func setupButtonAction() {
@@ -125,7 +130,6 @@ class ViewController: UIViewController {
   }
 }
 
-
 // UITableViewDataSource
 extension ViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -133,8 +137,39 @@ extension ViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-    cell.textLabel?.text = expenses[indexPath.row]
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenseCell", for: indexPath) as? ExpenseCell else {
+      return UITableViewCell()
+    }
+    let expenseText = expenses[indexPath.row]
+    cell.configure(with: expenseText)
     return cell
+  }
+}
+
+// Custom UITableViewCell
+class ResultTableViewCell: UITableViewCell {
+  
+  let expenseLabel = UILabel()
+  
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    super.init(style: style, reuseIdentifier: reuseIdentifier)
+    
+    expenseLabel.font = .systemFont(ofSize: 16)
+    expenseLabel.textColor = .black
+    contentView.addSubview(expenseLabel)
+    
+    expenseLabel.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      expenseLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+      expenseLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+    ])
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  func configure(with expense: String) {
+    expenseLabel.text = expense
   }
 }
