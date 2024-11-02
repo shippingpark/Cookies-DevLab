@@ -97,7 +97,6 @@ class ViewController: UIViewController {
     ])
     
     tableView.rowHeight = 50
-    
   }
   
   func setupButtonAction() {
@@ -143,33 +142,5 @@ extension ViewController: UITableViewDataSource {
     let expenseText = expenses[indexPath.row]
     cell.configure(with: expenseText)
     return cell
-  }
-}
-
-// Custom UITableViewCell
-class ResultTableViewCell: UITableViewCell {
-  
-  let expenseLabel = UILabel()
-  
-  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-    super.init(style: style, reuseIdentifier: reuseIdentifier)
-    
-    expenseLabel.font = .systemFont(ofSize: 16)
-    expenseLabel.textColor = .black
-    contentView.addSubview(expenseLabel)
-    
-    expenseLabel.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      expenseLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
-      expenseLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
-    ])
-  }
-  
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-  
-  func configure(with expense: String) {
-    expenseLabel.text = expense
   }
 }
