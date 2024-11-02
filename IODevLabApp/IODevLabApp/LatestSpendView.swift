@@ -7,11 +7,18 @@
 
 import SwiftUI
 
+@Observable
+class SpendData {
+    var latestSpendValue: String = ""
+}
+
 struct LatestSpendView: View {
+    var spendData: SpendData
+    
     var body: some View {
         HStack {
             Spacer()
-            Text("나 최근 입력 값")
+            Text("나 최근 입력 값 -> \(spendData.latestSpendValue)")
                 .font(.system(size: 14))
                 .padding(.vertical, 8)
             Spacer()
@@ -20,8 +27,4 @@ struct LatestSpendView: View {
         .background(Color(uiColor: UIColor.systemGray5))
         .clipShape(RoundedRectangle(cornerRadius: 20))
     }
-}
-
-#Preview {
-    LatestSpendView()
 }

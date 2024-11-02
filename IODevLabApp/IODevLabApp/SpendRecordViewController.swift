@@ -40,7 +40,8 @@ class SpendRecordViewController: UIViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    private let latestSpendView = UIHostingController(rootView: LatestSpendView()).view.set {
+    private let spendData = SpendData()
+    private lazy var latestSpendView = UIHostingController(rootView: LatestSpendView(spendData: spendData)).view.set {
         $0.backgroundColor = .clear
     }
     
@@ -124,6 +125,8 @@ class SpendRecordViewController: UIViewController {
             spendRecords.insert(formattedNumber, at: 0)
             spendRecordTableView.reloadData()
             setSpendBlockFromBottom()
+            
+            spendData.latestSpendValue = formattedNumber
             
             // TODO: 음.. 지출버튼이 눌리고 나서 키보드가 내려가야할까..?
             
