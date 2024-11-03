@@ -119,7 +119,7 @@ class ViewController: UIViewController, ExpenseCellDelegate, UITableViewDelegate
       tableView.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 20),
       tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
       tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
-      tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+      tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100)
     ])
     
     tableView.rowHeight = 50
@@ -134,10 +134,10 @@ class ViewController: UIViewController, ExpenseCellDelegate, UITableViewDelegate
     guard let expenseText = textField.text, !expenseText.isEmpty else {
       // 빈 입력일 경우 메시지를 배열에 추가
       expenses.insert("정확한 숫자를 입력해주세요", at: 0)
-      tableView.reloadData()
       textField.text = ""
       textField.resignFirstResponder() // 키패드 내리기
       adjustTableViewInsets() // 테이블 뷰 여백 조정
+      tableView.reloadData()
       return
     }
     
@@ -149,21 +149,24 @@ class ViewController: UIViewController, ExpenseCellDelegate, UITableViewDelegate
       if let formattedNumber = formatter.string(from: NSNumber(value: number)) {
         viewModel.addExpense(formattedNumber)
         expenses.insert(formattedNumber, at: 0)
+        
+        let indexPath = IndexPath(row: 0, section: 0) // 첫 번째 셀에 추가
+        tableView.insertRows(at: [indexPath], with: .none)
       }
     }
     
-    tableView.reloadData()
     textField.text = ""
     textField.resignFirstResponder()
     adjustTableViewInsets()
+    
+    tableView.reloadData()
   }
   
   func didTapDeleteButton(on cell: ExpenseCell) {
     guard let indexPath = tableView.indexPath(for: cell) else { return }
     expenses.remove(at: indexPath.row) // 배열에서 데이터 삭제
-    tableView.deleteRows(at: [indexPath], with: .automatic) // 테이블 뷰에서 삭제
-    
-    adjustTableViewInsets()
+    tableView.deleteRows(at: [indexPath], with: .none) // 테이블 뷰에서 삭제
+    adjustTableViewInsets() // 인셋 조정 호출
   }
   
   
