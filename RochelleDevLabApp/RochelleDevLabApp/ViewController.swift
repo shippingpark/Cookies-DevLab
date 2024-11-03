@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class ViewController: UIViewController, ExpenseCellDelegate, UITableViewDelegate {
   
@@ -23,12 +24,35 @@ class ViewController: UIViewController, ExpenseCellDelegate, UITableViewDelegate
     
     view.backgroundColor = .white
     
-    setupContainerView() // 컨테이너 뷰 설정
-    setupTableView() // 테이블 뷰 설정
-    setupButtonAction() // 버튼 액션 설정
+    setupContainerView()
+    setupTableView()
+    setupButtonAction()
     
     // ExpenseCell을 셀로 등록
     tableView.register(ExpenseCell.self, forCellReuseIdentifier: "ExpenseCell")
+    addSwiftUIView()
+  }
+  
+  // SwiftUI 뷰를 UIKit에 포함
+  func addSwiftUIView() {
+    let swiftUIView = SwiftUIView()
+    let hostingController = UIHostingController(rootView: swiftUIView) // HostingController 생성
+    
+    // HostingController를 컨테이너 뷰에 추가
+    addChild(hostingController)
+    view.addSubview(hostingController.view)
+    
+    hostingController.view.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      hostingController.view.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      hostingController.view.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 20),
+      hostingController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+      hostingController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+      hostingController.view.heightAnchor.constraint(equalToConstant: 50)
+    ])
+    
+    // HostingController가 부모 뷰 컨트롤러에 추가되었음을 알림
+    hostingController.didMove(toParent: self)
   }
   
   func setupContainerView() {

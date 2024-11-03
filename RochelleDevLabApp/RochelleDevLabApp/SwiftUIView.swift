@@ -16,7 +16,7 @@ struct SwiftUIView: View {
         }
         .padding()
         .frame(minWidth: 343)
-        .background(Color.gray.opacity(0.2))
+        .background(Color(UIColor.systemGray6))
         .clipShape(RoundedRectangle(cornerRadius: 999)) // 매우 큰 값으로 모서리를 둥글게
     }
 }
