@@ -5,6 +5,7 @@
 //  Created by Anjin on 11/1/24.
 //
 
+import SwiftUI
 import UIKit
 
 class SpendRecordViewController: UIViewController {
@@ -37,6 +38,11 @@ class SpendRecordViewController: UIViewController {
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.textColor = .red
         $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private let spendData = SpendData()
+    private lazy var latestSpendView = UIHostingController(rootView: LatestSpendView(spendData: spendData)).view.set {
+        $0.backgroundColor = .clear
     }
     
     private lazy var spendRecordTableView = UITableView().set {
@@ -120,6 +126,8 @@ class SpendRecordViewController: UIViewController {
             spendRecordTableView.reloadData()
             setSpendBlockFromBottom()
             
+            spendData.latestSpendValue = formattedNumber
+            
             // TODO: 음.. 지출버튼이 눌리고 나서 키보드가 내려가야할까..?
             
         } else {
@@ -134,6 +142,7 @@ extension SpendRecordViewController {
     private func layout() {
         layoutSpendInputView()
         layoutErrorMessageLabel()
+        layoutLatestSpendView()
         layoutSpendRecordTableView()
     }
     
@@ -169,10 +178,19 @@ extension SpendRecordViewController {
         ])
     }
     
+    private func layoutLatestSpendView() {
+        view.addSubview(latestSpendView)
+        NSLayoutConstraint.activate([
+            latestSpendView.topAnchor.constraint(equalTo: errorMessageLabel.bottomAnchor, constant: 20),
+            latestSpendView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            latestSpendView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25)
+        ])
+    }
+    
     private func layoutSpendRecordTableView() {
         view.addSubview(spendRecordTableView)
         NSLayoutConstraint.activate([
-            spendRecordTableView.topAnchor.constraint(equalTo: errorMessageLabel.bottomAnchor, constant: 20),
+            spendRecordTableView.topAnchor.constraint(equalTo: latestSpendView.bottomAnchor, constant: 20),
             spendRecordTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
             spendRecordTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
             spendRecordTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)

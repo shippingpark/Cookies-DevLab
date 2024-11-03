@@ -20,6 +20,7 @@
 		515A28592CD50530006717BD /* SpendRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515A28582CD50530006717BD /* SpendRecordViewController.swift */; };
 		515A285B2CD5D534006717BD /* ObjectSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515A285A2CD5D534006717BD /* ObjectSetter.swift */; };
 		515A285D2CD5DBE6006717BD /* SpendRecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515A285C2CD5DBE6006717BD /* SpendRecordTableViewCell.swift */; };
+		515A285F2CD622C5006717BD /* LatestSpendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515A285E2CD622C5006717BD /* LatestSpendView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		515A28582CD50530006717BD /* SpendRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendRecordViewController.swift; sourceTree = "<group>"; };
 		515A285A2CD5D534006717BD /* ObjectSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectSetter.swift; sourceTree = "<group>"; };
 		515A285C2CD5DBE6006717BD /* SpendRecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendRecordTableViewCell.swift; sourceTree = "<group>"; };
+		515A285E2CD622C5006717BD /* LatestSpendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestSpendView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				515A28542CD3B94A006717BD /* SpendTableViewCell.swift */,
 				515A28582CD50530006717BD /* SpendRecordViewController.swift */,
 				515A285C2CD5DBE6006717BD /* SpendRecordTableViewCell.swift */,
+				515A285E2CD622C5006717BD /* LatestSpendView.swift */,
 				515A285A2CD5D534006717BD /* ObjectSetter.swift */,
 				515A28282CD24D57006717BD /* Main.storyboard */,
 				515A282B2CD24D59006717BD /* Assets.xcassets */,
@@ -272,6 +275,7 @@
 			files = (
 				515A28552CD3B94A006717BD /* SpendTableViewCell.swift in Sources */,
 				515A28272CD24D57006717BD /* ViewController.swift in Sources */,
+				515A285F2CD622C5006717BD /* LatestSpendView.swift in Sources */,
 				515A28592CD50530006717BD /* SpendRecordViewController.swift in Sources */,
 				515A285B2CD5D534006717BD /* ObjectSetter.swift in Sources */,
 				515A285D2CD5DBE6006717BD /* SpendRecordTableViewCell.swift in Sources */,
