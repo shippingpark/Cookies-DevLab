@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 // 프로토콜 ? 자격증
 // self ? 나 자신
@@ -17,17 +18,20 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    
+
+
     // ViewController에 TableView 추가
     private let tableView = UITableView()
     
-    // 테이블뷰의 데이터를 표시하기 위한 배열
-    var spendArray: [String] = ["항목1", "항목2", "항목3", "항목4"]
+    // 테이블뷰의 데이터를 표시하기 위한 배열 - dataList
+    var spendArray: [String] = []
     
     // 지출 금액을 입력하는 텍스트뷰
     private lazy var spendTextFieldView: UIView =  {
         let view = UIView()
         
-        view.backgroundColor = UIColor.lightGray
+        view.backgroundColor = .systemGray5
         view.layer.cornerRadius = 28
         view.layer.masksToBounds = true
         
@@ -62,6 +66,7 @@ class ViewController: UIViewController {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         button.layer.cornerRadius = 16
         button.layer.masksToBounds = true
+        button.addTarget(self, action: #selector(spendButtonTapped), for: .touchUpInside)
         
         return button
     }()
@@ -70,10 +75,33 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // SwiftUI 화면
+        let vc = UIHostingController(rootView: SwiftUIView())
+        
+        let swiftUiView = vc.view!
+        swiftUiView.translatesAutoresizingMaskIntoConstraints = false
+        
+        addChild(vc)
+        view.addSubview(swiftUiView)
+      
+        NSLayoutConstraint.activate([
+            swiftUiView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            swiftUiView.topAnchor.constraint(equalTo: view.topAnchor, constant: 200)
+        ])
+        
+       
+        vc.didMove(toParent: self)
+        
+        // 테이블뷰 선 삭제
+        tableView.separatorStyle = .none
+        
         makeUI()
         setupTableView()
         setupTableViewConstraints()
     }
+    
+    
+    
     
     func makeUI () {
         
@@ -87,7 +115,7 @@ class ViewController: UIViewController {
         spendButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-         
+            
             spendTextFieldView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             spendTextFieldView.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 150),
             spendTextFieldView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9), // 비율
@@ -136,28 +164,68 @@ class ViewController: UIViewController {
         ])
     }
     
+    // 셀이 아래부터 쌓이도록 설정
+    private func setSpendBlockFromBottom() {
+        let totalHeight = tableView.contentSize.height // TableView 내부 Cell들의 높이 합
+        let visibleHeight = tableView.bounds.size.height // TableView 자체 높이
+        
+        // Cell들의 합이 전체 높이보다 작은 경우,
+        // (전체 - Cell들의 합)을 상단의 여백으로 둔다!!
+        let inset = max(0, visibleHeight - totalHeight)
+        tableView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: 0, right: 0)
+        
+      
+    }
+    
     @objc func spendButtonTapped() {
-        print("spend버튼이 눌렸습니다")
+        // cell의 spendOutputLabel에 표시
+        guard let spendText = spendTextField.text, !spendText.isEmpty else { return }
+        
+        spendArray.insert(spendText, at: 0)
+        
+        // 빈 텍스트배열
+        spendTextField.text = ""
+        
+        tableView.reloadData()
+        setSpendBlockFromBottom()
+        
+      
         
     }
 }
-
-
 
 extension ViewController: UITableViewDataSource {
     
     // 1) 테이블뷰에 몇개의 데이터를 표시할 것인지(셀이 몇개인지)를 뷰컨트롤러에게 물어봄
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
+        
         return spendArray.count
     }
     
     // 2) 셀의 구성(셀에 표시하고자 하는 데이터 표시)을 뷰컨트롤러에게 물어봄
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SpendCell", for: indexPath)
-        cell.textLabel?.text = spendArray[indexPath.row]
+    //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    //        let cell = tableView.dequeueReusableCell(withIdentifier: "SpendCell", for: indexPath)
+    //        cell.textLabel?.text = spendArray[indexPath.row]
+    //
+    //
+    //        return cell
+    //    }
     
-       return cell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SpendCell", for: indexPath) as? SpendTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        // 델리게이트 설정
+        cell.delegate = self
+        
+        // 셀의 텍스트 설정
+        cell.spendOutputLabel.text = spendArray[indexPath.row]
+        
+        // 선택했을 때 회색으로 변하지 않게 설정
+        cell.selectionStyle = .none
+        
+        return cell
     }
 }
 
@@ -168,7 +236,17 @@ extension ViewController: UITableViewDelegate {
         return
         
     }
+    
 }
 
-
+extension ViewController: SpendTableViewCellDelegate {
+    
+    func didTapDeleteButton(in cell: SpendTableViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        spendArray.remove(at: indexPath.row) // Remove the item from the array
+        tableView.deleteRows(at: [indexPath], with: .automatic) // Remove the cell from the table view
+        self.setSpendBlockFromBottom()
+        
+    }
+}
 
