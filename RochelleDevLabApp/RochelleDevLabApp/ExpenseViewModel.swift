@@ -13,7 +13,7 @@ class ExpenseViewModel: ObservableObject {
     
     // 최신 지출 금액을 저장
     var latestExpense: String {
-        expenses.first ?? "0"
+        expenses.first ?? ""
     }
     
     func addExpense(_ expense: String) {

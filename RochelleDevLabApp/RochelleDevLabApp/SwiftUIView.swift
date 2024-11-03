@@ -19,6 +19,10 @@ struct SwiftUIView: View {
     .padding()
     .frame(minWidth: 343, maxWidth: .infinity, maxHeight: 50)
     .background(Color(UIColor.systemGray6))
-    .clipShape(RoundedRectangle(cornerRadius: 999)) // 매우 큰 값으로 모서리를 둥글게
+    .clipShape(RoundedRectangle(cornerRadius: 999))
+    .accessibilityElement(children: .ignore)
+    .accessibilityLabel("최근 지출")
+    .accessibilityValue(viewModel.latestExpense)
+    .accessibilityHint("가장 최근에 추가된 지출 금액입니다")
   }
 }

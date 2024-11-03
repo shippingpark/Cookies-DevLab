@@ -54,6 +54,11 @@ class ViewController: UIViewController, ExpenseCellDelegate, UITableViewDelegate
     
     // UIHostingController가 부모 뷰 컨트롤러로 이동했음을 알림
     hostingController.didMove(toParent: self)
+    
+    // 접근성 활성화
+    hostingController.view.isAccessibilityElement = true
+    hostingController.view.accessibilityLabel = "최근 지출 정보"
+    hostingController.view.accessibilityTraits = .updatesFrequently
   }
   
   func setupContainerView() {
