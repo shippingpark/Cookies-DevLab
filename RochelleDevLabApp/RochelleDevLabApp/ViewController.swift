@@ -93,11 +93,21 @@ class ViewController: UIViewController, ExpenseCellDelegate, UITableViewDelegate
     textField.placeholder = "금액을 입력해주세요"
     textField.keyboardType = .numberPad
     
+    // 다이나믹 폰트 적용
+    let textFieldFont = UIFont.preferredFont(forTextStyle: .body)
+    textField.font = UIFontMetrics.default.scaledFont(for: textFieldFont)
+    textField.adjustsFontForContentSizeCategory = true
+    
     // Button 설정
     button.setTitle("지출", for: .normal)
     button.setTitleColor(.black, for: .normal)
     button.backgroundColor = .white
     button.layer.cornerRadius = 15
+    
+    // 다이나믹 폰트 적용
+    let buttonFont = UIFont.preferredFont(forTextStyle: .body)
+    button.titleLabel?.font = UIFontMetrics.default.scaledFont(for: buttonFont)
+    button.titleLabel?.adjustsFontForContentSizeCategory = true
     
     // StackView에 TextField, Button 추가
     stackView.addArrangedSubview(textField)
@@ -194,6 +204,12 @@ extension ViewController: UITableViewDataSource {
     let expenseText = expenses[indexPath.row] // 순서대로 설정
     cell.delegate = self
     cell.configure(with: expenseText)
+    
+    // 다이나믹 폰트 적용
+    let expenseFont = UIFont.preferredFont(forTextStyle: .body)
+    cell.expenseLabel.font = UIFontMetrics.default.scaledFont(for: expenseFont)
+    cell.expenseLabel.adjustsFontForContentSizeCategory = true
+    
     return cell
   }
 }
