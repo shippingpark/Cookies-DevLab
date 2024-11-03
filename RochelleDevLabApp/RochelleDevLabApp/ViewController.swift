@@ -109,13 +109,23 @@ class ViewController: UIViewController, ExpenseCellDelegate, UITableViewDelegate
     button.titleLabel?.font = UIFontMetrics.default.scaledFont(for: buttonFont)
     button.titleLabel?.adjustsFontForContentSizeCategory = true
     
+    // Content Hugging Priority 설정
+    textField.setContentHuggingPriority(.defaultLow, for: .horizontal)
+    button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+    
+    // Compression Resistance Priority 설정
+    textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+    button.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+    
     // StackView에 TextField, Button 추가
     stackView.addArrangedSubview(textField)
     stackView.addArrangedSubview(button)
     
+    // 버튼에 최소 너비 제약 추가
+    button.widthAnchor.constraint(greaterThanOrEqualToConstant: 60).isActive = true
+    
     // TextField 너비 비율 조정
-    textField.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.8).isActive = true
-    button.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.15).isActive = true
+    textField.widthAnchor.constraint(greaterThanOrEqualTo: stackView.widthAnchor, multiplier: 0.6).isActive = true
   }
   
   func setupTableView() {
