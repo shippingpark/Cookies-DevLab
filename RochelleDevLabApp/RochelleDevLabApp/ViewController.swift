@@ -18,6 +18,7 @@ class ViewController: UIViewController, ExpenseCellDelegate, UITableViewDelegate
   
   // 데이터를 저장할 배열
   var expenses: [String] = []
+  var viewModel = ExpenseViewModel() // ViewModel 인스턴스 생성
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -35,7 +36,7 @@ class ViewController: UIViewController, ExpenseCellDelegate, UITableViewDelegate
   
   // SwiftUI 뷰를 UIKit에 포함
   func addSwiftUIView() {
-    let swiftUIView = SwiftUIView()
+    let swiftUIView = SwiftUIView(viewModel: viewModel)
     let hostingController = UIHostingController(rootView: swiftUIView)  // UIHostingController를 생성하여 SwiftUI 뷰(MySwiftUIView)를 포함
     
     // HostingController를 컨테이너 뷰에 추가
@@ -146,6 +147,7 @@ class ViewController: UIViewController, ExpenseCellDelegate, UITableViewDelegate
       let formatter = NumberFormatter()
       formatter.numberStyle = .decimal
       if let formattedNumber = formatter.string(from: NSNumber(value: number)) {
+        viewModel.addExpense(formattedNumber)
         expenses.insert(formattedNumber, at: 0)
       }
     }
