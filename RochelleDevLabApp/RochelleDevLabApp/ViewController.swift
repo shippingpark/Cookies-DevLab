@@ -36,11 +36,11 @@ class ViewController: UIViewController, ExpenseCellDelegate, UITableViewDelegate
   // SwiftUI 뷰를 UIKit에 포함
   func addSwiftUIView() {
     let swiftUIView = SwiftUIView()
-    let hostingController = UIHostingController(rootView: swiftUIView) // HostingController 생성
+    let hostingController = UIHostingController(rootView: swiftUIView)  // UIHostingController를 생성하여 SwiftUI 뷰(MySwiftUIView)를 포함
     
     // HostingController를 컨테이너 뷰에 추가
-    addChild(hostingController)
-    view.addSubview(hostingController.view)
+    addChild(hostingController)  // UIHostingController를 현재 뷰 컨트롤러의 자식 뷰 컨트롤러로 추가
+    view.addSubview(hostingController.view) // 현재 뷰 컨트롤러의 뷰에 UIHostingController의 뷰를 추가
     
     hostingController.view.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
@@ -51,7 +51,7 @@ class ViewController: UIViewController, ExpenseCellDelegate, UITableViewDelegate
       hostingController.view.heightAnchor.constraint(equalToConstant: 50)
     ])
     
-    // HostingController가 부모 뷰 컨트롤러에 추가되었음을 알림
+    // UIHostingController가 부모 뷰 컨트롤러로 이동했음을 알림
     hostingController.didMove(toParent: self)
   }
   
