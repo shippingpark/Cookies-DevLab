@@ -108,7 +108,7 @@ class ViewController: UIViewController, ExpenseCellDelegate, UITableViewDelegate
   @objc func buttonTapped() {
     guard let expenseText = textField.text, !expenseText.isEmpty else {
       // 빈 입력일 경우 메시지를 배열에 추가
-      expenses.append("정확히 숫자를 입력해주세요")
+      expenses.insert("정확한 숫자를 입력해주세요", at: 0)
       tableView.reloadData()
       textField.text = ""
       textField.resignFirstResponder() // 키패드 내리기
@@ -124,8 +124,6 @@ class ViewController: UIViewController, ExpenseCellDelegate, UITableViewDelegate
       if let formattedNumber = formatter.string(from: NSNumber(value: number)) {
         expenses.insert(formattedNumber, at: 0)
       }
-    } else {
-      expenses.insert("정확한 숫자를 입력해주세요", at: 0)
     }
     
     tableView.reloadData()
