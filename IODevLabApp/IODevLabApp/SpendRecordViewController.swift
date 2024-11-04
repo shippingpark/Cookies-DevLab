@@ -240,3 +240,17 @@ extension SpendRecordViewController: UITextFieldDelegate {
         self.spendTextField.resignFirstResponder()
     }
 }
+
+struct AKNumberFormatter {
+    func formatWithCommas(_ input: String) -> String? {
+        if let inputInt = Int(input), inputInt >= 0 {
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = .decimal
+            let formattedNumber = numberFormatter.string(from: inputInt as NSNumber) ?? ""
+            
+            return formattedNumber
+        } else {
+            return nil
+        }
+    }
+}

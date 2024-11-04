@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		512420472CD87C750098B55C /* SpendRecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515A285C2CD5DBE6006717BD /* SpendRecordTableViewCell.swift */; };
+		512420482CD87C7B0098B55C /* ObjectSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515A285A2CD5D534006717BD /* ObjectSetter.swift */; };
+		512420492CD87C8B0098B55C /* LatestSpendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515A285E2CD622C5006717BD /* LatestSpendView.swift */; };
+		5124204B2CD87FA60098B55C /* NumberFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5124204A2CD87FA60098B55C /* NumberFormatterTests.swift */; };
 		515A28232CD24D57006717BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515A28222CD24D57006717BD /* AppDelegate.swift */; };
 		515A28252CD24D57006717BD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515A28242CD24D57006717BD /* SceneDelegate.swift */; };
 		515A28272CD24D57006717BD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515A28262CD24D57006717BD /* ViewController.swift */; };
@@ -21,6 +25,7 @@
 		515A285B2CD5D534006717BD /* ObjectSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515A285A2CD5D534006717BD /* ObjectSetter.swift */; };
 		515A285D2CD5DBE6006717BD /* SpendRecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515A285C2CD5DBE6006717BD /* SpendRecordTableViewCell.swift */; };
 		515A285F2CD622C5006717BD /* LatestSpendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515A285E2CD622C5006717BD /* LatestSpendView.swift */; };
+		515A28602CD86F12006717BD /* SpendRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515A28582CD50530006717BD /* SpendRecordViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5124204A2CD87FA60098B55C /* NumberFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatterTests.swift; sourceTree = "<group>"; };
 		515A281F2CD24D57006717BD /* IODevLabApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IODevLabApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		515A28222CD24D57006717BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		515A28242CD24D57006717BD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				515A28392CD24D59006717BD /* IODevLabAppTests.swift */,
+				5124204A2CD87FA60098B55C /* NumberFormatterTests.swift */,
 			);
 			path = IODevLabAppTests;
 			sourceTree = "<group>";
@@ -288,7 +295,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				515A28602CD86F12006717BD /* SpendRecordViewController.swift in Sources */,
+				5124204B2CD87FA60098B55C /* NumberFormatterTests.swift in Sources */,
+				512420472CD87C750098B55C /* SpendRecordTableViewCell.swift in Sources */,
 				515A283A2CD24D59006717BD /* IODevLabAppTests.swift in Sources */,
+				512420482CD87C7B0098B55C /* ObjectSetter.swift in Sources */,
+				512420492CD87C8B0098B55C /* LatestSpendView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +448,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
