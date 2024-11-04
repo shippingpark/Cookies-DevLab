@@ -12,16 +12,13 @@ class SpendRecordViewController: UIViewController {
     private let spendInputView = UIView().set {
         $0.backgroundColor = .systemGray5
         $0.layer.cornerRadius = 20
-        $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private let spendTextField = UITextField().set {
         $0.placeholder = "지출할 금액을 입력해!!"
         $0.backgroundColor = .clear
         $0.font = UIFont.systemFont(ofSize: 14)
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        
-        $0.keyboardType = .numberPad
+        $0.keyboardType = .numberPad // 키보드를 숫자패드로 설정
     }
     
     private let spendButton = UIButton().set {
@@ -30,24 +27,22 @@ class SpendRecordViewController: UIViewController {
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 16
-        $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private let errorMessageLabel = UILabel().set {
         $0.text = ""
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.textColor = .red
-        $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private let spendData = SpendData()
-    private lazy var latestSpendView = UIHostingController(rootView: LatestSpendView(spendData: spendData)).view.set {
+    private lazy var latestSpendSwiftUIView = LatestSpendView(spendData: spendData)
+    private lazy var latestSpendView = UIHostingController(rootView: latestSpendSwiftUIView).view.set {
         $0.backgroundColor = .clear
     }
     
     private lazy var spendRecordTableView = UITableView().set {
         $0.backgroundColor = .clear
-        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.separatorStyle = .none
         
         $0.register(SpendRecordTableViewCell.self, forCellReuseIdentifier: SpendRecordTableViewCell.identifier)
