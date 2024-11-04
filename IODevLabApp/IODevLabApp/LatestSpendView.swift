@@ -19,7 +19,7 @@ struct LatestSpendView: View {
         HStack {
             Spacer()
             Text("나 최근 입력 값 -> \(spendData.latestSpendValue)")
-                .font(.system(size: 14))
+                .font(.body)
                 .padding(.vertical, 8)
             Spacer()
         }

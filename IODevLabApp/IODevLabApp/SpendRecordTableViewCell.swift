@@ -18,20 +18,22 @@ class SpendRecordTableViewCell: UITableViewCell {
     
     private var spendLabel = UILabel().set {
         $0.text = "2000"
-        $0.font = UIFont.systemFont(ofSize: 14)
+        $0.font = UIFont.preferredFont(forTextStyle: .body)
+        $0.adjustsFontForContentSizeCategory = true
         $0.textColor = .black
     }
     
     private let unitLabel = UILabel().set {
         $0.text = "원"
-        $0.font = UIFont.systemFont(ofSize: 14)
+        $0.font = UIFont.preferredFont(forTextStyle: .body)
         $0.textColor = .black
     }
     
     private let deleteButton = UIButton().set {
         $0.setTitle("X", for: .normal)
         $0.setTitleColor(.black, for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        $0.titleLabel?.adjustsFontForContentSizeCategory = true
         $0.backgroundColor = .clear
     }
     

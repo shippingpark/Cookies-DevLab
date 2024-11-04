@@ -17,21 +17,24 @@ class SpendRecordViewController: UIViewController {
     private let spendTextField = UITextField().set {
         $0.placeholder = "지출할 금액을 입력해!!"
         $0.backgroundColor = .clear
-        $0.font = UIFont.systemFont(ofSize: 14)
+        $0.font = UIFont.preferredFont(forTextStyle: .body)
+        $0.adjustsFontForContentSizeCategory = true
         $0.keyboardType = .numberPad // 키보드를 숫자패드로 설정
     }
     
     private let spendButton = UIButton().set {
         $0.setTitle("지출", for: .normal)
         $0.setTitleColor(.black, for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        $0.titleLabel?.adjustsFontForContentSizeCategory = true
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 16
     }
     
     private let errorMessageLabel = UILabel().set {
         $0.text = ""
-        $0.font = UIFont.systemFont(ofSize: 14)
+        $0.font = UIFont.preferredFont(forTextStyle: .body)
+        $0.adjustsFontForContentSizeCategory = true
         $0.textColor = .red
     }
     
