@@ -27,6 +27,8 @@ final class SpendTableViewCell: UITableViewCell {
         view.addSubview(spendOutputLabel)
         view.addSubview(deleteButton)
         
+        view.isAccessibilityElement = false
+        
         return view
     }()
     
@@ -40,6 +42,7 @@ final class SpendTableViewCell: UITableViewCell {
         label.adjustsFontForContentSizeCategory = true
         label.font = UIFont.preferredFont(forTextStyle: .body)
         
+        // VoiceOver
         return label
     }()
     
@@ -53,6 +56,9 @@ final class SpendTableViewCell: UITableViewCell {
         // 다이나믹 폰트 적용
         label.adjustsFontForContentSizeCategory = true
         label.font = UIFont.preferredFont(forTextStyle: .body)
+        
+        // vocieOver
+        label.accessibilityLabel = "원"
         
         return label
     }()

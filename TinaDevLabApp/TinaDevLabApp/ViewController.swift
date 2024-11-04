@@ -43,6 +43,9 @@ class ViewController: UIViewController {
         view.addSubview(spendTextField)
         view.addSubview(spendButton)
         
+        // vocieOver 적용막기
+        view.isAccessibilityElement = false
+        
         return view
     }()
     
@@ -62,6 +65,10 @@ class ViewController: UIViewController {
         tf.adjustsFontForContentSizeCategory = true
         tf.font = UIFont.preferredFont(forTextStyle: .body)
         
+        // vocieOver 적용하기
+        tf.accessibilityLabel = "지출 금액을 입력해주세요"
+
+        
         return tf
     }()
     
@@ -79,6 +86,11 @@ class ViewController: UIViewController {
         // 다이나믹 폰트 적용
         button.titleLabel?.adjustsFontForContentSizeCategory = true
         button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        
+        // vocieOver 적용하기
+        button.accessibilityLabel = "지출 버튼"
+        button.accessibilityHint = "지출 버튼을 누릅니다"
+        
         
         
         return button
