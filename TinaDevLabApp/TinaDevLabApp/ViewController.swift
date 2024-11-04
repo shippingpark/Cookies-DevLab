@@ -76,6 +76,11 @@ class ViewController: UIViewController {
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(spendButtonTapped), for: .touchUpInside)
         
+        // 다이나믹 폰트 적용
+        button.titleLabel?.adjustsFontForContentSizeCategory = true
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        
+        
         return button
     }()
     

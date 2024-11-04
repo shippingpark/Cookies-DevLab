@@ -66,6 +66,7 @@ final class SpendTableViewCell: UITableViewCell {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         button.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
         
+        
         return button
     }()
     
