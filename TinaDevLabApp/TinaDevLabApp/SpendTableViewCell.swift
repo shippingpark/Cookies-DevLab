@@ -36,6 +36,10 @@ final class SpendTableViewCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .black
         
+        // 다이나믹 폰트 적용
+        label.adjustsFontForContentSizeCategory = true
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        
         return label
     }()
     
@@ -45,6 +49,10 @@ final class SpendTableViewCell: UITableViewCell {
         label.text = "원"
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .black
+        
+        // 다이나믹 폰트 적용
+        label.adjustsFontForContentSizeCategory = true
+        label.font = UIFont.preferredFont(forTextStyle: .body)
         
         return label
     }()

@@ -18,7 +18,11 @@ import SwiftUI
 
 class ViewController: UIViewController {
     
+    
     // Day5 시작
+    
+    // 다이나믹폰트 관찰
+   
 
 
     // ViewController에 TableView 추가
@@ -53,6 +57,10 @@ class ViewController: UIViewController {
         tf.autocorrectionType = .no
         tf.spellCheckingType = .no
         tf.keyboardType = .numberPad
+        
+        // 다이나믹 폰트 적용
+        tf.adjustsFontForContentSizeCategory = true
+        tf.font = UIFont.preferredFont(forTextStyle: .body)
         
         return tf
     }()
@@ -189,9 +197,13 @@ class ViewController: UIViewController {
         tableView.reloadData()
         setSpendBlockFromBottom()
         
-      
-        
     }
+    
+    // 다이나믹 폰트 적용
+//    @objc private func handleDynamicTypeChange() {
+//        
+//        spendTextField.font = UIFont.preferredFont(forTextStyle: .body)
+//    }
 }
 
 extension ViewController: UITableViewDataSource {
