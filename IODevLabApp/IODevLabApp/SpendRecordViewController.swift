@@ -147,23 +147,25 @@ extension SpendRecordViewController {
     private func layoutSpendInputView() {
         view.addSubview(spendInputView)
         NSLayoutConstraint.activate([
-            spendInputView.heightAnchor.constraint(equalToConstant: 40),
             spendInputView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
             spendInputView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
             spendInputView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25)
         ])
         
-        spendInputView.addSubview(spendTextField)
-        NSLayoutConstraint.activate([
-            spendTextField.centerYAnchor.constraint(equalTo: spendInputView.centerYAnchor),
-            spendTextField.leadingAnchor.constraint(equalTo: spendInputView.leadingAnchor, constant: 12)
-        ])
-        
         spendInputView.addSubview(spendButton)
         NSLayoutConstraint.activate([
-            spendButton.widthAnchor.constraint(equalTo: spendInputView.widthAnchor, multiplier: 0.15),
-            spendButton.centerYAnchor.constraint(equalTo: spendInputView.centerYAnchor),
+            spendButton.topAnchor.constraint(equalTo: spendInputView.topAnchor, constant: 12),
+            spendButton.bottomAnchor.constraint(equalTo: spendInputView.bottomAnchor, constant: -12),
             spendButton.trailingAnchor.constraint(equalTo: spendInputView.trailingAnchor, constant: -12)
+        ])
+        
+        spendInputView.addSubview(spendTextField)
+        NSLayoutConstraint.activate([
+            spendTextField.topAnchor.constraint(equalTo: spendInputView.topAnchor, constant: 12),
+            spendTextField.bottomAnchor.constraint(equalTo: spendInputView.bottomAnchor, constant: -12),
+            spendTextField.leadingAnchor.constraint(equalTo: spendInputView.leadingAnchor, constant: 12),
+//            spendTextField.trailingAnchor.constraint(equalToSystemSpacingAfter: spendInputView.trailingAnchor, multiplier: -12)
+            spendTextField.trailingAnchor.constraint(equalTo: spendButton.leadingAnchor, constant: -12)
         ])
     }
     
