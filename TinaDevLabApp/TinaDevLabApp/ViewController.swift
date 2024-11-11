@@ -19,6 +19,10 @@ import SwiftUI
 class ViewController: UIViewController {
     
     
+    // Day5 시작
+    
+    // 다이나믹폰트 관찰
+   
 
 
     // ViewController에 TableView 추가
@@ -39,6 +43,9 @@ class ViewController: UIViewController {
         view.addSubview(spendTextField)
         view.addSubview(spendButton)
         
+        // vocieOver 적용막기
+        view.isAccessibilityElement = false
+        
         return view
     }()
     
@@ -54,6 +61,14 @@ class ViewController: UIViewController {
         tf.spellCheckingType = .no
         tf.keyboardType = .numberPad
         
+        // 다이나믹 폰트 적용
+        tf.adjustsFontForContentSizeCategory = true
+        tf.font = UIFont.preferredFont(forTextStyle: .body)
+        
+        // vocieOver 적용하기
+        tf.accessibilityLabel = "지출 금액을 입력해주세요"
+
+        
         return tf
     }()
     
@@ -67,6 +82,16 @@ class ViewController: UIViewController {
         button.layer.cornerRadius = 16
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(spendButtonTapped), for: .touchUpInside)
+        
+        // 다이나믹 폰트 적용
+        button.titleLabel?.adjustsFontForContentSizeCategory = true
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        
+        // vocieOver 적용하기
+        button.accessibilityLabel = "지출 버튼"
+        button.accessibilityHint = "지출 버튼을 누릅니다"
+        
+        
         
         return button
     }()
@@ -189,9 +214,13 @@ class ViewController: UIViewController {
         tableView.reloadData()
         setSpendBlockFromBottom()
         
-      
-        
     }
+    
+    // 다이나믹 폰트 적용
+//    @objc private func handleDynamicTypeChange() {
+//        
+//        spendTextField.font = UIFont.preferredFont(forTextStyle: .body)
+//    }
 }
 
 extension ViewController: UITableViewDataSource {

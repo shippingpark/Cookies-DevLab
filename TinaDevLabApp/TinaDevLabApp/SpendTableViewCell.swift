@@ -27,6 +27,8 @@ final class SpendTableViewCell: UITableViewCell {
         view.addSubview(spendOutputLabel)
         view.addSubview(deleteButton)
         
+        view.isAccessibilityElement = false
+        
         return view
     }()
     
@@ -36,6 +38,11 @@ final class SpendTableViewCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .black
         
+        // 다이나믹 폰트 적용
+        label.adjustsFontForContentSizeCategory = true
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        
+        // VoiceOver
         return label
     }()
     
@@ -45,6 +52,13 @@ final class SpendTableViewCell: UITableViewCell {
         label.text = "원"
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .black
+        
+        // 다이나믹 폰트 적용
+        label.adjustsFontForContentSizeCategory = true
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        
+        // vocieOver
+        label.accessibilityLabel = "원"
         
         return label
     }()
@@ -57,6 +71,7 @@ final class SpendTableViewCell: UITableViewCell {
         button.setTitleColor(UIColor.black, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         button.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
+        
         
         return button
     }()
