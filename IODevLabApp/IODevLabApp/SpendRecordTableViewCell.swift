@@ -14,29 +14,27 @@ class SpendRecordTableViewCell: UITableViewCell {
     private let background = UIView().set {
         $0.backgroundColor = .systemGray5
         $0.layer.cornerRadius = 20
-        $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private var spendLabel = UILabel().set {
         $0.text = "2000"
-        $0.font = UIFont.systemFont(ofSize: 14)
+        $0.font = UIFont.preferredFont(forTextStyle: .body)
+        $0.adjustsFontForContentSizeCategory = true
         $0.textColor = .black
-        $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private let unitLabel = UILabel().set {
         $0.text = "원"
-        $0.font = UIFont.systemFont(ofSize: 14)
+        $0.font = UIFont.preferredFont(forTextStyle: .body)
         $0.textColor = .black
-        $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private let deleteButton = UIButton().set {
         $0.setTitle("X", for: .normal)
         $0.setTitleColor(.black, for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        $0.titleLabel?.adjustsFontForContentSizeCategory = true
         $0.backgroundColor = .clear
-        $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
     var deleteAction: () -> Void = {}

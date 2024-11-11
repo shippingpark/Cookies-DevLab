@@ -19,11 +19,10 @@ struct LatestSpendView: View {
         HStack {
             Spacer()
             Text("나 최근 입력 값 -> \(spendData.latestSpendValue)")
-                .font(.system(size: 14))
-                .padding(.vertical, 8)
+                .font(.body)
             Spacer()
         }
-        .frame(height: 40)
+        .padding(.vertical, 12)
         .background(Color(uiColor: UIColor.systemGray5))
         .clipShape(RoundedRectangle(cornerRadius: 20))
     }

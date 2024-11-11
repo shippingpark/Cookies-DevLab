@@ -12,42 +12,40 @@ class SpendRecordViewController: UIViewController {
     private let spendInputView = UIView().set {
         $0.backgroundColor = .systemGray5
         $0.layer.cornerRadius = 20
-        $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private let spendTextField = UITextField().set {
         $0.placeholder = "지출할 금액을 입력해!!"
         $0.backgroundColor = .clear
-        $0.font = UIFont.systemFont(ofSize: 14)
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        
-        $0.keyboardType = .numberPad
+        $0.font = UIFont.preferredFont(forTextStyle: .body)
+        $0.adjustsFontForContentSizeCategory = true
+        $0.keyboardType = .numberPad // 키보드를 숫자패드로 설정
     }
     
     private let spendButton = UIButton().set {
         $0.setTitle("지출", for: .normal)
         $0.setTitleColor(.black, for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        $0.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        $0.titleLabel?.adjustsFontForContentSizeCategory = true
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 16
-        $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private let errorMessageLabel = UILabel().set {
         $0.text = ""
-        $0.font = UIFont.systemFont(ofSize: 14)
+        $0.font = UIFont.preferredFont(forTextStyle: .body)
+        $0.adjustsFontForContentSizeCategory = true
         $0.textColor = .red
-        $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private let spendData = SpendData()
-    private lazy var latestSpendView = UIHostingController(rootView: LatestSpendView(spendData: spendData)).view.set {
+    private lazy var latestSpendSwiftUIView = LatestSpendView(spendData: spendData)
+    private lazy var latestSpendView = UIHostingController(rootView: latestSpendSwiftUIView).view.set {
         $0.backgroundColor = .clear
     }
     
     private lazy var spendRecordTableView = UITableView().set {
         $0.backgroundColor = .clear
-        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.separatorStyle = .none
         
         $0.register(SpendRecordTableViewCell.self, forCellReuseIdentifier: SpendRecordTableViewCell.identifier)
@@ -149,23 +147,25 @@ extension SpendRecordViewController {
     private func layoutSpendInputView() {
         view.addSubview(spendInputView)
         NSLayoutConstraint.activate([
-            spendInputView.heightAnchor.constraint(equalToConstant: 40),
             spendInputView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
             spendInputView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
             spendInputView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25)
         ])
         
-        spendInputView.addSubview(spendTextField)
-        NSLayoutConstraint.activate([
-            spendTextField.centerYAnchor.constraint(equalTo: spendInputView.centerYAnchor),
-            spendTextField.leadingAnchor.constraint(equalTo: spendInputView.leadingAnchor, constant: 12)
-        ])
-        
         spendInputView.addSubview(spendButton)
         NSLayoutConstraint.activate([
-            spendButton.widthAnchor.constraint(equalTo: spendInputView.widthAnchor, multiplier: 0.15),
-            spendButton.centerYAnchor.constraint(equalTo: spendInputView.centerYAnchor),
+            spendButton.topAnchor.constraint(equalTo: spendInputView.topAnchor, constant: 12),
+            spendButton.bottomAnchor.constraint(equalTo: spendInputView.bottomAnchor, constant: -12),
             spendButton.trailingAnchor.constraint(equalTo: spendInputView.trailingAnchor, constant: -12)
+        ])
+        
+        spendInputView.addSubview(spendTextField)
+        NSLayoutConstraint.activate([
+            spendTextField.topAnchor.constraint(equalTo: spendInputView.topAnchor, constant: 12),
+            spendTextField.bottomAnchor.constraint(equalTo: spendInputView.bottomAnchor, constant: -12),
+            spendTextField.leadingAnchor.constraint(equalTo: spendInputView.leadingAnchor, constant: 12),
+//            spendTextField.trailingAnchor.constraint(equalToSystemSpacingAfter: spendInputView.trailingAnchor, multiplier: -12)
+            spendTextField.trailingAnchor.constraint(equalTo: spendButton.leadingAnchor, constant: -12)
         ])
     }
     
@@ -238,5 +238,19 @@ extension SpendRecordViewController: UITextFieldDelegate {
     @objc func doneButtonAction() {
         // "완료" 버튼을 눌렀을 때 키보드 내리기
         self.spendTextField.resignFirstResponder()
+    }
+}
+
+struct AKNumberFormatter {
+    func formatWithCommas(_ input: String) -> String? {
+        if let inputInt = Int(input), inputInt >= 0 {
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = .decimal
+            let formattedNumber = numberFormatter.string(from: inputInt as NSNumber) ?? ""
+            
+            return formattedNumber
+        } else {
+            return nil
+        }
     }
 }
