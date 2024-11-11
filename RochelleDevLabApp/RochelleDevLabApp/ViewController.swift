@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class ViewController: UIViewController, ExpenseCellDelegate, UITableViewDelegate {
   
@@ -17,18 +18,47 @@ class ViewController: UIViewController, ExpenseCellDelegate, UITableViewDelegate
   
   // 데이터를 저장할 배열
   var expenses: [String] = []
+  var viewModel = ExpenseViewModel() // ViewModel 인스턴스 생성
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     view.backgroundColor = .white
     
-    setupContainerView() // 컨테이너 뷰 설정
-    setupTableView() // 테이블 뷰 설정
-    setupButtonAction() // 버튼 액션 설정
+    setupContainerView()
+    setupTableView()
+    setupButtonAction()
     
     // ExpenseCell을 셀로 등록
     tableView.register(ExpenseCell.self, forCellReuseIdentifier: "ExpenseCell")
+    addSwiftUIView()
+  }
+  
+  // SwiftUI 뷰를 UIKit에 포함
+  func addSwiftUIView() {
+    let swiftUIView = SwiftUIView(viewModel: viewModel)
+    let hostingController = UIHostingController(rootView: swiftUIView)  // UIHostingController를 생성하여 SwiftUI 뷰(MySwiftUIView)를 포함
+    
+    // HostingController를 컨테이너 뷰에 추가
+    addChild(hostingController)  // UIHostingController를 현재 뷰 컨트롤러의 자식 뷰 컨트롤러로 추가
+    view.addSubview(hostingController.view) // 현재 뷰 컨트롤러의 뷰에 UIHostingController의 뷰를 추가
+    
+    hostingController.view.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      hostingController.view.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      hostingController.view.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 20),
+      hostingController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+      hostingController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+      hostingController.view.heightAnchor.constraint(equalToConstant: 50)
+    ])
+    
+    // UIHostingController가 부모 뷰 컨트롤러로 이동했음을 알림
+    hostingController.didMove(toParent: self)
+    
+    // 접근성 활성화
+    hostingController.view.isAccessibilityElement = true
+    hostingController.view.accessibilityLabel = "최근 지출 정보"
+    hostingController.view.accessibilityTraits = .updatesFrequently
   }
   
   func setupContainerView() {
@@ -68,19 +98,39 @@ class ViewController: UIViewController, ExpenseCellDelegate, UITableViewDelegate
     textField.placeholder = "금액을 입력해주세요"
     textField.keyboardType = .numberPad
     
+    // 다이나믹 폰트 적용
+    let textFieldFont = UIFont.preferredFont(forTextStyle: .body)
+    textField.font = UIFontMetrics.default.scaledFont(for: textFieldFont)
+    textField.adjustsFontForContentSizeCategory = true
+    
     // Button 설정
     button.setTitle("지출", for: .normal)
     button.setTitleColor(.black, for: .normal)
     button.backgroundColor = .white
     button.layer.cornerRadius = 15
     
+    // 다이나믹 폰트 적용
+    let buttonFont = UIFont.preferredFont(forTextStyle: .body)
+    button.titleLabel?.font = UIFontMetrics.default.scaledFont(for: buttonFont)
+    button.titleLabel?.adjustsFontForContentSizeCategory = true
+    
+    // Content Hugging Priority 설정
+    textField.setContentHuggingPriority(.defaultLow, for: .horizontal)
+    button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+    
+    // Compression Resistance Priority 설정
+    textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+    button.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+    
     // StackView에 TextField, Button 추가
     stackView.addArrangedSubview(textField)
     stackView.addArrangedSubview(button)
     
+    // 버튼에 최소 너비 제약 추가
+    button.widthAnchor.constraint(greaterThanOrEqualToConstant: 60).isActive = true
+    
     // TextField 너비 비율 조정
-    textField.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.8).isActive = true
-    button.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.15).isActive = true
+    textField.widthAnchor.constraint(greaterThanOrEqualTo: stackView.widthAnchor, multiplier: 0.6).isActive = true
   }
   
   func setupTableView() {
@@ -94,7 +144,7 @@ class ViewController: UIViewController, ExpenseCellDelegate, UITableViewDelegate
       tableView.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 20),
       tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
       tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
-      tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+      tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100)
     ])
     
     tableView.rowHeight = 50
@@ -109,10 +159,10 @@ class ViewController: UIViewController, ExpenseCellDelegate, UITableViewDelegate
     guard let expenseText = textField.text, !expenseText.isEmpty else {
       // 빈 입력일 경우 메시지를 배열에 추가
       expenses.insert("정확한 숫자를 입력해주세요", at: 0)
-      tableView.reloadData()
       textField.text = ""
       textField.resignFirstResponder() // 키패드 내리기
       adjustTableViewInsets() // 테이블 뷰 여백 조정
+      tableView.reloadData()
       return
     }
     
@@ -122,22 +172,26 @@ class ViewController: UIViewController, ExpenseCellDelegate, UITableViewDelegate
       let formatter = NumberFormatter()
       formatter.numberStyle = .decimal
       if let formattedNumber = formatter.string(from: NSNumber(value: number)) {
+        viewModel.addExpense(formattedNumber)
         expenses.insert(formattedNumber, at: 0)
+        
+        let indexPath = IndexPath(row: 0, section: 0) // 첫 번째 셀에 추가
+        tableView.insertRows(at: [indexPath], with: .none)
       }
     }
     
-    tableView.reloadData()
     textField.text = ""
     textField.resignFirstResponder()
     adjustTableViewInsets()
+    
+    tableView.reloadData()
   }
   
   func didTapDeleteButton(on cell: ExpenseCell) {
     guard let indexPath = tableView.indexPath(for: cell) else { return }
     expenses.remove(at: indexPath.row) // 배열에서 데이터 삭제
-    tableView.deleteRows(at: [indexPath], with: .automatic) // 테이블 뷰에서 삭제
-    
-    adjustTableViewInsets()
+    tableView.deleteRows(at: [indexPath], with: .none) // 테이블 뷰에서 삭제
+    adjustTableViewInsets() // 인셋 조정 호출
   }
   
   
@@ -165,6 +219,12 @@ extension ViewController: UITableViewDataSource {
     let expenseText = expenses[indexPath.row] // 순서대로 설정
     cell.delegate = self
     cell.configure(with: expenseText)
+    
+    // 다이나믹 폰트 적용
+    let expenseFont = UIFont.preferredFont(forTextStyle: .body)
+    cell.expenseLabel.font = UIFontMetrics.default.scaledFont(for: expenseFont)
+    cell.expenseLabel.adjustsFontForContentSizeCategory = true
+    
     return cell
   }
 }

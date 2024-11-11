@@ -27,25 +27,30 @@ class ExpenseCell: UITableViewCell {
     containerView.layer.cornerRadius = 20
     contentView.addSubview(containerView)
     
-    // expenseLabel 설정
-    expenseLabel.font = .systemFont(ofSize: 16)
+    let expenseFont = UIFont.preferredFont(forTextStyle: .body)
+    expenseLabel.font = UIFontMetrics.default.scaledFont(for: expenseFont)
+    expenseLabel.adjustsFontForContentSizeCategory = true // 다이나믹 폰트 사용
     expenseLabel.textColor = .black
     expenseLabel.textAlignment = .right
     
+    let deleteButtonFont = UIFont.preferredFont(forTextStyle: .body)
+    deleteButton.titleLabel?.font = UIFontMetrics.default.scaledFont(for: deleteButtonFont) // 다이나믹 폰트 적용
+    deleteButton.titleLabel?.adjustsFontForContentSizeCategory = true
     deleteButton.setTitle("X", for: .normal)
     deleteButton.setTitleColor(.black, for: .normal)
     deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
     
-    unitLabel.font = .systemFont(ofSize: 16)
+    let unitFont = UIFont.preferredFont(forTextStyle: .body)
+    unitLabel.font = UIFontMetrics.default.scaledFont(for: unitFont)
+    unitLabel.adjustsFontForContentSizeCategory = true // 다이나믹 폰트 사용
     unitLabel.textColor = .black
     unitLabel.text = "원"
     
-    // UI 요소 추가
     containerView.addSubview(deleteButton)
     containerView.addSubview(expenseLabel)
     containerView.addSubview(unitLabel)
     
-    // UI 요소 오토 레이아웃 설정
+    // 오토 레이아웃 설정
     deleteButton.translatesAutoresizingMaskIntoConstraints = false
     expenseLabel.translatesAutoresizingMaskIntoConstraints = false
     unitLabel.translatesAutoresizingMaskIntoConstraints = false
